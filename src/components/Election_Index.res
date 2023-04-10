@@ -32,8 +32,11 @@ let make = () => {
       { t(."election.home.create") -> React.string }
     </Button>
     <X.Title>{ "-" -> React.string }</X.Title>
-    { state.cached_elections
+    { state.cachedElections
       -> Map.String.toArray
+      -> Array.keep(((id, _election)) => {
+        Option.isNone(State.getElectionReplacementId(state, id))
+      })
       -> Array.map(((id, election)) => {
         <Election id election key=id />
     }) -> React.array }
