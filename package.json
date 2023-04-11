@@ -20,7 +20,11 @@
     "eas-build-post-install": "rescript clean && rescript build -with-deps",
     "test": "cypress run",
     "test:gui": "cypress open",
-    "bbs": "cd bbs && npm start"
+    "bbs": "cd bbs && npm start",
+    "opam:init": "opam switch create . 4.14.1 -y --deps-only && opam update",
+    "opam:deps": "opam install -y . --deps-only && opam pin -y add scrutin.dev .",
+    "setup": "npm run opam:init && npm run opam:deps && npm install",
+    "build": "opam exec -- dune build @react"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.2.3",

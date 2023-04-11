@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { Text } from 'react-native';
-import { make as App } from "./src/App.bs.js"
+import { make as App } from  "./_build/default/src/output/src/App.js"
 import 'react-native-get-random-values'
 import './i18n'
 import * as SplashScreen from 'expo-splash-screen';

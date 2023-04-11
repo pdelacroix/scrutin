@@ -1,0 +1,16 @@
+(include_subdirs unqualified)
+(melange.emit
+  (target output)
+  (alias react)
+  (libraries melange rescript_promise ReactNative reason_react rescript_webapi rescript_react_native_async_storage paper rescript_json_combinators rescript_use_tea rescript_react_native_svg)
+  (modules :standard)
+  (runtime_deps
+    (glob_files ./helpers/*.js)
+    (glob_files ./components/icons/*.js)
+    (glob_files ./components/utils/*.js)
+    (glob_files ./components/utils/*.svg)
+    (glob_files ./components/utils/*.png))
+  (preprocess
+    (pps reactjs-jsx-ppx))
+  (compile_flags :standard -open Belt -open Paper -open ReactNative -w -9)
+  (module_systems es6))

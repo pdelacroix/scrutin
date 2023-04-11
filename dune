@@ -1,0 +1,86 @@
+(subdir
+  packages/mel-react-native/src
+  (include_subdirs unqualified)
+  (library
+    (name ReactNative)
+    (libraries reason_react)
+    (preprocess
+      (pps reactjs-jsx-ppx))
+    (wrapped true)
+    (modes melange)
+    (flags -w -9-27-32-20))
+  )
+(subdir
+  node_modules
+  (data_only_dirs reason-react))
+(subdir
+  node_modules/@rescript/react/src
+  (include_subdirs unqualified)
+  (library
+    (name reason_react)
+    (wrapped false)
+    (modes melange)
+    (flags -w -9-27-32-20)))
+(subdir
+  node_modules/@rescript-react-native/paper/src
+  (include_subdirs unqualified)
+  (library
+    (name paper)
+    (libraries ReactNative)
+    (preprocess
+      (pps reactjs-jsx-ppx))
+    (wrapped false)
+    (modes melange)
+    (flags -w -9-27-32-20)))
+(subdir
+  node_modules/@rescript-react-native/svg
+  (include_subdirs unqualified)
+  (library
+    (name rescript_react_native_svg)
+    (libraries ReactNative)
+    (preprocess
+      (pps reactjs-jsx-ppx))
+    (wrapped false)
+    (modes melange)
+    (flags -w -9-27-32-20)))
+(subdir
+  node_modules/@ryyppy/rescript-promise/src
+  (include_subdirs unqualified)
+  (library
+    (name rescript_promise)
+    (wrapped false)
+    (modes melange)
+    (flags -w -9-27-32-20)))
+(subdir
+  node_modules/@glennsl/rescript-json-combinators
+  (include_subdirs unqualified)
+  (library
+    (name rescript_json_combinators)
+    (wrapped false)
+    (modes melange)
+    (flags -w -9-27-32-20)))
+(subdir
+  node_modules/rescript-use-tea
+  (include_subdirs unqualified)
+  (library
+    (name rescript_use_tea)
+    (libraries reason_react)
+    (wrapped false)
+    (modes melange)
+    (flags -w -9-27-32-20)))
+(subdir
+  node_modules/rescript-webapi
+  (include_subdirs unqualified)
+  (library
+    (name rescript_webapi)
+    (wrapped false)
+    (modes melange)
+    (flags -w -9-27-32-20)))
+(subdir
+  node_modules/rescript-react-native-async-storage
+  (include_subdirs unqualified)
+  (library
+    (name rescript_react_native_async_storage)
+    (wrapped false)
+    (modes melange)
+    (flags -w -9-27-32-20)))
