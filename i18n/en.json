@@ -59,6 +59,11 @@
                 "modal.email": "Email",
                 "modal.back": "Back",
                 "modal.sendInvite": "Send invite by email"
+            },
+            "createInvite": {
+                "button": "Create invite",
+                "share": "Share",
+                "close": "Close"
             }
         },
         "settings": {
