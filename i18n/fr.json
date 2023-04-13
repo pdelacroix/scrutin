@@ -22,7 +22,7 @@
             "clearAll": "Effacer les contacts"
         },
         "election.home": {
-            "create": "Creer une nouvelle election"
+            "create": "Créer une élection"
         },
         "election.new": {
             "noPublicKey": "Pas de clef publique trouvée",
