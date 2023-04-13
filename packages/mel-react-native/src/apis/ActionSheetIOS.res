@@ -1,16 +1,17 @@
 type options = {
   options: array<string>,
-  cancelButtonIndex?: int,
-  destructiveButtonIndex?: array<int>,
-  disabledButtonIndices?: int,
-  title?: string,
-  message?: string,
-  tintColor?: Color.t,
-  cancelButtonTintColor?: Color.t,
+  cancelButtonIndex: option<int>,
+  destructiveButtonIndex: option<array<int>>,
+  disabledButtonIndices: option<int>,
+  title: option<string>,
+  message: option<string>,
+  tintColor: option<Color.t>,
+  cancelButtonTintColor: option<Color.t>,
 }
 
-@obj // @deprecated("Directly create record instead")
-external options: (
+@obj
+external // @deprecated("Directly create record instead")
+options: (
   ~options: array<string>,
   ~cancelButtonIndex: int=?,
   ~destructiveButtonIndex: array<int>=?,
@@ -26,14 +27,15 @@ external options: (
 external showActionSheetWithOptions: (options, int => unit) => unit = "showActionSheetWithOptions"
 
 type shareOptions = {
-  url?: string,
-  message?: string,
-  subject?: string,
-  excludedActivityTypes?: array<string>,
+  url: option<string>,
+  message: option<string>,
+  subject: option<string>,
+  excludedActivityTypes: option<array<string>>,
 }
 
-@obj // @deprecated("Directly create record instead")
-external shareOptions: (
+@obj
+external // @deprecated("Directly create record instead")
+shareOptions: (
   ~url: string=?,
   ~message: string=?,
   ~subject: string=?,

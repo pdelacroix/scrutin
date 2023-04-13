@@ -1,4 +1,4 @@
-'use strict';
+
 
 
 function pct(num) {
@@ -17,9 +17,11 @@ var FontWeight = {};
 
 var empty = {};
 
-exports.pct = pct;
-exports.deg = deg;
-exports.rad = rad;
-exports.FontWeight = FontWeight;
-exports.empty = empty;
+export {
+  pct ,
+  deg ,
+  rad ,
+  FontWeight ,
+  empty ,
+}
 /* No side effect */

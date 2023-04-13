@@ -1,8 +1,9 @@
-'use strict';
 
-var NativeElement$ReactNative = require("../elements/NativeElement.bs.js");
 
-var Size;
+import * as NativeElement$ReactNative from "../elements/NativeElement.bs.js";
 
-exports.Size = Size;
+
+export {
+  
+}
 /* NativeElement-ReactNative Not a pure module */

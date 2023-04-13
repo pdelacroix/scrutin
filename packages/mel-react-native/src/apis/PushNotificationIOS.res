@@ -29,20 +29,21 @@ module Notification = {
 type repeatInterval = [#minute | #hour | #day | #week | #month | #year]
 
 type localNotification = {
-  alertBody?: string,
-  alertTitle?: string,
-  alertAction?: string,
-  soundName?: string,
-  isSilent?: bool,
-  category?: string,
-  userInfo?: Js.Json.t,
-  applicationIconBadgeNumber?: int,
-  fireDate?: Js.Date.t,
-  repeatInterval?: repeatInterval,
+  alertBody: option<string>,
+  alertTitle: option<string>,
+  alertAction: option<string>,
+  soundName: option<string>,
+  isSilent: option<bool>,
+  category: option<string>,
+  userInfo: option<Js.Json.t>,
+  applicationIconBadgeNumber: option<int>,
+  fireDate: option<Js.Date.t>,
+  repeatInterval: option<repeatInterval>,
 }
 
-@obj // @deprecated("Directly create record instead")
-external localNotification: (
+@obj
+external // @deprecated("Directly create record instead")
+localNotification: (
   ~alertBody: string=?,
   ~alertTitle: string=?,
   ~alertAction: string=?,
@@ -151,13 +152,14 @@ type checkedPermissions = {
 }
 
 type requestPermissionsOptions = {
-  alert?: bool,
-  badge?: bool,
-  sound?: bool,
+  alert: option<bool>,
+  badge: option<bool>,
+  sound: option<bool>,
 }
 
-@obj // @deprecated("Directly create record instead")
-external requestPermissionsOptions: (
+@obj
+external // @deprecated("Directly create record instead")
+requestPermissionsOptions: (
   ~alert: bool=?,
   ~badge: bool=?,
   ~sound: bool=?,
@@ -180,13 +182,14 @@ external abandonPermissions: unit => unit = "abandonPermissions"
 external checkPermissions: (unit => checkedPermissions) => unit = "checkPermissions"
 
 type fetchResult = {
-  \"NewData"?: string,
-  \"NoData"?: string,
-  \"ResultFailed"?: string,
+  \"NewData": option<string>,
+  \"NoData": option<string>,
+  \"ResultFailed": option<string>,
 }
 
-@obj // @deprecated("Directly create record instead")
-external fetchResult: (
+@obj
+external // @deprecated("Directly create record instead")
+fetchResult: (
   ~\"NewData": string=?,
   ~\"NoData": string=?,
   ~\"ResultFailed": string=?,

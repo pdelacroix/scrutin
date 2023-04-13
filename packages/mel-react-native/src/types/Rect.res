@@ -1,6 +1,6 @@
 type t = {
-  left?: float,
-  right?: float,
-  top?: float,
-  bottom?: float,
+  left: option<float>,
+  right: option<float>,
+  top: option<float>,
+  bottom: option<float>,
 }

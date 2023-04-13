@@ -6,14 +6,9 @@ type edgeInsets = Rect.t
 
 // @todo in 0.70
 // @deprecated("Use `Rect.t` or `HitSlop.t` type instead")
-@obj // @deprecated("Directly create record instead")
-external edgeInsets: (
-  ~left: float=?,
-  ~right: float=?,
-  ~top: float=?,
-  ~bottom: float=?,
-  unit,
-) => Rect.t = ""
+@obj
+external // @deprecated("Directly create record instead")
+edgeInsets: (~left: float=?, ~right: float=?, ~top: float=?, ~bottom: float=?, unit) => Rect.t = ""
 
 // commodity for easier copy pasting for updating other components that have
 // View props

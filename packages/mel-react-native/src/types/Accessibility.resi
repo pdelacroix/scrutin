@@ -12,11 +12,12 @@ let mixed: checked<string>
 
 type actionInfo = {
   name: string,
-  label?: string,
+  label: option<string>,
 }
 
-@obj // @deprecated("Directly create record instead")
-external actionInfo: (~name: string, ~label: string=?, unit) => actionInfo = ""
+@obj
+external // @deprecated("Directly create record instead")
+actionInfo: (~name: string, ~label: string=?, unit) => actionInfo = ""
 
 type actionEvent = AccessibilityActionEvent.t
 

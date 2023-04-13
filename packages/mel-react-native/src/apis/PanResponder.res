@@ -16,23 +16,24 @@ type panHandlers
 type callback<'a> = Event.pressEvent => 'a
 
 type config = {
-  onMoveShouldSetPanResponder?: (Event.pressEvent, gestureState) => bool,
-  onMoveShouldSetPanResponderCapture?: (Event.pressEvent, gestureState) => bool,
-  onStartShouldSetPanResponder?: (Event.pressEvent, gestureState) => bool,
-  onStartShouldSetPanResponderCapture?: (Event.pressEvent, gestureState) => bool,
-  onPanResponderReject?: (Event.pressEvent, gestureState) => unit,
-  onPanResponderGrant?: (Event.pressEvent, gestureState) => unit,
-  onPanResponderStart?: (Event.pressEvent, gestureState) => unit,
-  onPanResponderEnd?: (Event.pressEvent, gestureState) => unit,
-  onPanResponderRelease?: (Event.pressEvent, gestureState) => unit,
-  onPanResponderMove?: (Event.pressEvent, gestureState) => unit,
-  onPanResponderTerminate?: (Event.pressEvent, gestureState) => unit,
-  onPanResponderTerminationRequest?: (Event.pressEvent, gestureState) => bool,
-  onShouldBlockNativeResponder?: (Event.pressEvent, gestureState) => bool,
+  onMoveShouldSetPanResponder: option<(Event.pressEvent, gestureState) => bool>,
+  onMoveShouldSetPanResponderCapture: option<(Event.pressEvent, gestureState) => bool>,
+  onStartShouldSetPanResponder: option<(Event.pressEvent, gestureState) => bool>,
+  onStartShouldSetPanResponderCapture: option<(Event.pressEvent, gestureState) => bool>,
+  onPanResponderReject: option<(Event.pressEvent, gestureState) => unit>,
+  onPanResponderGrant: option<(Event.pressEvent, gestureState) => unit>,
+  onPanResponderStart: option<(Event.pressEvent, gestureState) => unit>,
+  onPanResponderEnd: option<(Event.pressEvent, gestureState) => unit>,
+  onPanResponderRelease: option<(Event.pressEvent, gestureState) => unit>,
+  onPanResponderMove: option<(Event.pressEvent, gestureState) => unit>,
+  onPanResponderTerminate: option<(Event.pressEvent, gestureState) => unit>,
+  onPanResponderTerminationRequest: option<(Event.pressEvent, gestureState) => bool>,
+  onShouldBlockNativeResponder: option<(Event.pressEvent, gestureState) => bool>,
 }
 
-@obj // @deprecated("Directly create record instead")
-external config: (
+@obj
+external // @deprecated("Directly create record instead")
+config: (
   ~onMoveShouldSetPanResponder: (Event.pressEvent, gestureState) => bool=?,
   ~onMoveShouldSetPanResponderCapture: (Event.pressEvent, gestureState) => bool=?,
   ~onStartShouldSetPanResponder: (Event.pressEvent, gestureState) => bool=?,

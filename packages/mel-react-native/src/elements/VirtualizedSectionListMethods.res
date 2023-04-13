@@ -6,13 +6,14 @@ module Make = (
   type scrollToLocationParams = {
     itemIndex: int,
     sectionIndex: int,
-    animated?: bool,
-    viewOffset?: int,
-    viewPosition?: float,
+    animated: option<bool>,
+    viewOffset: option<int>,
+    viewPosition: option<float>,
   }
 
-  @obj // @deprecated("Directly create record instead")
-  external scrollToLocationParams: (
+  @obj
+  external // @deprecated("Directly create record instead")
+  scrollToLocationParams: (
     ~animated: bool=?,
     ~itemIndex: int,
     ~sectionIndex: int,

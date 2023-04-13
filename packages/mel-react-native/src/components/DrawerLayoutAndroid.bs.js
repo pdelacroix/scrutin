@@ -1,11 +1,13 @@
-'use strict';
 
-var Event$ReactNative = require("../apis/Event.bs.js");
-var DrawerLayoutAndroidElement$ReactNative = require("../elements/DrawerLayoutAndroidElement.bs.js");
+
+import * as Event$ReactNative from "../apis/Event.bs.js";
+import * as DrawerLayoutAndroidElement$ReactNative from "../elements/DrawerLayoutAndroidElement.bs.js";
 
 Event$ReactNative.SyntheticEvent({});
 
 var DrawerSlideEvent = {};
 
-exports.DrawerSlideEvent = DrawerSlideEvent;
+export {
+  DrawerSlideEvent ,
+}
 /*  Not a pure module */

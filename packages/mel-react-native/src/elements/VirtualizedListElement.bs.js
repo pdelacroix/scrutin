@@ -1,10 +1,13 @@
-'use strict';
 
-var ScrollViewMethods$ReactNative = require("./ScrollViewMethods.bs.js");
-var VirtualizedListMethods$ReactNative = require("./VirtualizedListMethods.bs.js");
+
+import * as ScrollViewMethods$ReactNative from "./ScrollViewMethods.bs.js";
+import * as VirtualizedListMethods$ReactNative from "./VirtualizedListMethods.bs.js";
 
 VirtualizedListMethods$ReactNative.Make({});
 
 ScrollViewMethods$ReactNative.Make({});
 
+export {
+  
+}
 /*  Not a pure module */

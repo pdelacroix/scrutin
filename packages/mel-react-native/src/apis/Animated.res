@@ -26,14 +26,15 @@ module ValueAnimations = (Val: Value) => {
     type config = {
       velocity: Val.rawValue,
       useNativeDriver: bool,
-      deceleration?: float,
-      isInteraction?: bool,
-      onComplete?: Animation.endCallback,
-      iterations?: int,
+      deceleration: option<float>,
+      isInteraction: option<bool>,
+      onComplete: option<Animation.endCallback>,
+      iterations: option<int>,
     }
 
-    @obj // @deprecated("Directly create record instead")
-    external config: (
+    @obj
+    external // @deprecated("Directly create record instead")
+    config: (
       ~velocity: Val.rawValue,
       ~deceleration: float=?,
       ~isInteraction: bool=?,
@@ -55,25 +56,26 @@ module ValueAnimations = (Val: Value) => {
     type config = {
       toValue: toValue,
       useNativeDriver: bool,
-      restDisplacementThreshold?: float,
-      overshootClamping?: bool,
-      restSpeedThreshold?: float,
-      velocity?: Val.rawValue,
-      bounciness?: float,
-      speed?: float,
-      tension?: float,
-      friction?: float,
-      stiffness?: float,
-      mass?: float,
-      damping?: float,
-      delay?: float,
-      isInteraction?: bool,
-      onComplete?: Animation.endCallback,
-      iterations?: int,
+      restDisplacementThreshold: option<float>,
+      overshootClamping: option<bool>,
+      restSpeedThreshold: option<float>,
+      velocity: option<Val.rawValue>,
+      bounciness: option<float>,
+      speed: option<float>,
+      tension: option<float>,
+      friction: option<float>,
+      stiffness: option<float>,
+      mass: option<float>,
+      damping: option<float>,
+      delay: option<float>,
+      isInteraction: option<bool>,
+      onComplete: option<Animation.endCallback>,
+      iterations: option<int>,
     }
 
-    @obj // @deprecated("Directly create record instead")
-    external config: (
+    @obj
+    external // @deprecated("Directly create record instead")
+    config: (
       ~toValue: toValue,
       ~restDisplacementThreshold: float=?,
       ~overshootClamping: bool=?,
@@ -107,16 +109,17 @@ module ValueAnimations = (Val: Value) => {
     type config = {
       toValue: toValue,
       useNativeDriver: bool,
-      easing?: Easing.t,
-      duration?: float,
-      delay?: float,
-      isInteraction?: bool,
-      onComplete?: Animation.endCallback,
-      iterations?: int,
+      easing: option<Easing.t>,
+      duration: option<float>,
+      delay: option<float>,
+      isInteraction: option<bool>,
+      onComplete: option<Animation.endCallback>,
+      iterations: option<int>,
     }
 
-    @obj // @deprecated("Directly create record instead")
-    external config: (
+    @obj
+    external // @deprecated("Directly create record instead")
+    config: (
       ~toValue: toValue,
       ~easing: Easing.t=?,
       ~duration: float=?,
@@ -144,14 +147,15 @@ module Interpolation = {
   type config = {
     inputRange: array<float>,
     outputRange: outputRange,
-    easing?: Easing.t,
-    extrapolate?: extrapolate,
-    extrapolateLeft?: extrapolate,
-    extrapolateRight?: extrapolate,
+    easing: option<Easing.t>,
+    extrapolate: option<extrapolate>,
+    extrapolateLeft: option<extrapolate>,
+    extrapolateRight: option<extrapolate>,
   }
 
-  @obj // @deprecated("Directly create record instead")
-  external config: (
+  @obj
+  external // @deprecated("Directly create record instead")
+  config: (
     ~inputRange: array<float>,
     ~outputRange: outputRange,
     ~easing: Easing.t=?,

@@ -1,7 +1,10 @@
-'use strict';
 
-var VirtualizedSectionListMethods$ReactNative = require("./VirtualizedSectionListMethods.bs.js");
+
+import * as VirtualizedSectionListMethods$ReactNative from "./VirtualizedSectionListMethods.bs.js";
 
 VirtualizedSectionListMethods$ReactNative.Make({});
 
+export {
+  
+}
 /*  Not a pure module */

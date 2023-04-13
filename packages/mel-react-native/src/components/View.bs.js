@@ -1,8 +1,10 @@
-'use strict';
 
-var NativeElement$ReactNative = require("../elements/NativeElement.bs.js");
+
+import * as NativeElement$ReactNative from "../elements/NativeElement.bs.js";
 
 var View = {};
 
-exports.View = View;
+export {
+  View ,
+}
 /* NativeElement-ReactNative Not a pure module */

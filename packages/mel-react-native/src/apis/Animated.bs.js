@@ -1,13 +1,13 @@
-'use strict';
 
-var Caml_option = require("rescript/lib/js/caml_option.js");
-var ReactNative = require("react-native");
-var Text$ReactNative = require("../components/Text.bs.js");
-var View$ReactNative = require("../components/View.bs.js");
-var Image$ReactNative = require("../components/Image.bs.js");
-var FlatList$ReactNative = require("../components/FlatList.bs.js");
-var ScrollView$ReactNative = require("../components/ScrollView.bs.js");
-var SectionList$ReactNative = require("../components/SectionList.bs.js");
+
+import * as Caml_option from "melange/lib/es6/caml_option.mjs";
+import * as ReactNative from "react-native";
+import * as Text$ReactNative from "../components/Text.bs.js";
+import * as View$ReactNative from "../components/View.bs.js";
+import * as Image$ReactNative from "../components/Image.bs.js";
+import * as FlatList$ReactNative from "../components/FlatList.bs.js";
+import * as ScrollView$ReactNative from "../components/ScrollView.bs.js";
+import * as SectionList$ReactNative from "../components/SectionList.bs.js";
 
 var Animation = {};
 
@@ -147,25 +147,27 @@ var View = {
   make: make$5
 };
 
-exports.Animation = Animation;
-exports.ValueAnimations = ValueAnimations;
-exports.Interpolation = Interpolation;
-exports.ValueOperations = ValueOperations;
-exports.ValueMethods = ValueMethods;
-exports.Value = Value;
-exports.ValueXY = ValueXY;
-exports.Color = Color;
-exports.timing = timing;
-exports.spring = spring;
-exports.decay = decay;
-exports.start = start;
-exports.stop = stop;
-exports.reset = reset;
-exports.StyleProp = StyleProp;
-exports.FlatList = FlatList;
-exports.$$Image = $$Image;
-exports.ScrollView = ScrollView;
-exports.SectionList = SectionList;
-exports.$$Text = $$Text;
-exports.View = View;
+export {
+  Animation ,
+  ValueAnimations ,
+  Interpolation ,
+  ValueOperations ,
+  ValueMethods ,
+  Value ,
+  ValueXY ,
+  Color ,
+  timing ,
+  spring ,
+  decay ,
+  start ,
+  stop ,
+  reset ,
+  StyleProp ,
+  FlatList ,
+  $$Image ,
+  ScrollView ,
+  SectionList ,
+  $$Text ,
+  View ,
+}
 /* make Not a pure module */

@@ -8,11 +8,11 @@ type rec renderItemProps<'item, 'sectionData> = {
 }
 and section<'item, 'sectionData> = {
   data: array<'item>,
-  key?: string,
-  renderItem?: renderItemCallback<'item, 'sectionData>,
-  \"ItemSeparatorComponent"?: unit => React.element,
-  keyExtractor?: ('item, int) => string,
-  sectionData?: 'sectionData,
+  key: option<string>,
+  renderItem: option<renderItemCallback<'item, 'sectionData>>,
+  \"ItemSeparatorComponent": option<unit => React.element>,
+  keyExtractor: option<('item, int) => string>,
+  sectionData: option<'sectionData>,
 }
 and separators = {
   highlight: unit => unit,
@@ -29,14 +29,15 @@ and renderSectionHeaderProps<'item, 'sectionData> = {section: section<'item, 'se
 type separatorProps<'item, 'sectionData> = {
   highlighted: bool,
   leadingItem: 'item,
-  leadingSection?: section<'item, 'sectionData>,
+  leadingSection: option<section<'item, 'sectionData>>,
   section: section<'item, 'sectionData>,
-  trailingItem?: 'item,
-  trailingSection?: section<'item, 'sectionData>,
+  trailingItem: option<'item>,
+  trailingSection: option<section<'item, 'sectionData>>,
 }
 
-@obj // @deprecated("Directly create record instead")
-external section: (
+@obj
+external // @deprecated("Directly create record instead")
+section: (
   ~data: array<'item>,
   ~key: string=?,
   ~renderItem: renderItemCallback<'item, 'sectionData>=?,

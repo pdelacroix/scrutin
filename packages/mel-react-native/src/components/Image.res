@@ -9,18 +9,19 @@ type cache = [
 
 type uriSource = {
   uri: string,
-  bundle?: string,
-  method?: string,
-  headers?: Js.Dict.t<string>,
-  body?: string,
-  cache?: cache,
-  scale?: float,
-  width?: float,
-  height?: float,
+  bundle: option<string>,
+  method: option<string>,
+  headers: option<Js.Dict.t<string>>,
+  body: option<string>,
+  cache: option<cache>,
+  scale: option<float>,
+  width: option<float>,
+  height: option<float>,
 }
 
-@obj // @deprecated("Directly create record instead")
-external uriSource: (
+@obj
+external // @deprecated("Directly create record instead")
+uriSource: (
   ~uri: string,
   ~bundle: string=?,
   ~method: string=?,

@@ -42,10 +42,10 @@ type onScrollToIndexFailedInfo = {
 type onScrollToIndexFailedParams = {info: onScrollToIndexFailedInfo}
 
 type viewabilityConfig = {
-  minimumViewTime?: float,
-  viewAreaCoveragePercentThreshold?: float,
-  itemVisiblePercentThreshold?: float,
-  waitForInteraction?: bool,
+  minimumViewTime: option<float>,
+  viewAreaCoveragePercentThreshold: option<float>,
+  itemVisiblePercentThreshold: option<float>,
+  waitForInteraction: option<bool>,
 }
 
 type viewabilityConfigCallbackPair<'item> = {
@@ -53,8 +53,9 @@ type viewabilityConfigCallbackPair<'item> = {
   onViewableItemsChanged: viewableItemsChanged<'item> => unit,
 }
 
-@obj // @deprecated("Directly create record instead")
-external viewabilityConfigCallbackPair: (
+@obj
+external // @deprecated("Directly create record instead")
+viewabilityConfigCallbackPair: (
   ~viewabilityConfig: viewabilityConfig,
   ~onViewableItemsChanged: viewableItemsChanged<'item> => unit,
 ) => viewabilityConfigCallbackPair<'item> = ""

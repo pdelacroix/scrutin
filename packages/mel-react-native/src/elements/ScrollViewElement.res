@@ -8,12 +8,13 @@ include ScrollViewMethods.Make({
 type scrollToParams = {
   x: float,
   y: float,
-  animated?: bool,
-  duration?: float,
+  animated: option<bool>,
+  duration: option<float>,
 }
 
-@obj // @deprecated("Directly create record instead")
-external scrollToParams: (
+@obj
+external // @deprecated("Directly create record instead")
+scrollToParams: (
   ~x: float,
   ~y: float,
   ~animated: bool=?,

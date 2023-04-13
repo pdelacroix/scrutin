@@ -1,21 +1,23 @@
 type content = {
-  title?: string,
-  message?: string,
-  url?: string,
+  title: option<string>,
+  message: option<string>,
+  url: option<string>,
 }
 
-@obj // @deprecated("Directly create record instead")
-external content: (~title: string=?, ~message: string=?, ~url: string=?, unit) => content = ""
+@obj
+external // @deprecated("Directly create record instead")
+content: (~title: string=?, ~message: string=?, ~url: string=?, unit) => content = ""
 
 type options = {
-  subject?: string,
-  tintColor?: string,
-  excludedActivityTypes?: array<string>,
-  dialogTitle?: string,
+  subject: option<string>,
+  tintColor: option<string>,
+  excludedActivityTypes: option<array<string>>,
+  dialogTitle: option<string>,
 }
 
-@obj // @deprecated("Directly create record instead")
-external options: (
+@obj
+external // @deprecated("Directly create record instead")
+options: (
   ~subject: string=?,
   ~tintColor: string=?,
   ~excludedActivityTypes: array<string>=?,

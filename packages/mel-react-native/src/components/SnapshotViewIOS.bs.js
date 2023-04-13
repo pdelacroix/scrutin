@@ -1,10 +1,12 @@
-'use strict';
 
-var Event$ReactNative = require("../apis/Event.bs.js");
+
+import * as Event$ReactNative from "../apis/Event.bs.js";
 
 Event$ReactNative.SyntheticEvent({});
 
 var SnapshotReadyEvent = {};
 
-exports.SnapshotReadyEvent = SnapshotReadyEvent;
+export {
+  SnapshotReadyEvent ,
+}
 /*  Not a pure module */

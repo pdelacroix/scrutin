@@ -1,14 +1,15 @@
 include NativeElement
 
 type rippleConfig = {
-  borderless?: bool,
-  color?: Color.t,
-  foreground?: bool,
-  radius?: float,
+  borderless: option<bool>,
+  color: option<Color.t>,
+  foreground: option<bool>,
+  radius: option<float>,
 }
 
-@obj // @deprecated("Directly create record instead")
-external rippleConfig: (
+@obj
+external // @deprecated("Directly create record instead")
+rippleConfig: (
   ~borderless: bool=?,
   ~color: Color.t=?,
   ~foreground: bool=?,

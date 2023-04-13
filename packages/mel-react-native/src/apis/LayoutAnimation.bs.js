@@ -1,7 +1,9 @@
-'use strict';
+
 
 
 var Presets = {};
 
-exports.Presets = Presets;
+export {
+  Presets ,
+}
 /* No side effect */

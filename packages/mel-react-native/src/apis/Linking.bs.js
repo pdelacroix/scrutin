@@ -1,7 +1,9 @@
-'use strict';
+
 
 
 var ExtraValue = {};
 
-exports.ExtraValue = ExtraValue;
+export {
+  ExtraValue ,
+}
 /* No side effect */

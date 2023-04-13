@@ -1,7 +1,10 @@
-'use strict';
 
-var NativeMethods$ReactNative = require("./NativeMethods.bs.js");
+
+import * as NativeMethods$ReactNative from "./NativeMethods.bs.js";
 
 NativeMethods$ReactNative.Make({});
 
+export {
+  
+}
 /*  Not a pure module */

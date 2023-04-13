@@ -5,13 +5,14 @@ module Make = (
 ) => {
   type scrollToIndexParams = {
     index: int,
-    animated?: bool,
-    viewOffset?: float,
-    viewPosition?: float,
+    animated: option<bool>,
+    viewOffset: option<float>,
+    viewPosition: option<float>,
   }
 
-  @obj // @deprecated("Directly create record instead")
-  external scrollToIndexParams: (
+  @obj
+  external // @deprecated("Directly create record instead")
+  scrollToIndexParams: (
     ~viewOffset: float=?,
     ~viewPosition: float=?,
     ~animated: bool=?,
@@ -23,12 +24,13 @@ module Make = (
 
   type scrollToItemParams<'item> = {
     item: 'item,
-    viewPosition?: float,
-    animated?: bool,
+    viewPosition: option<float>,
+    animated: option<bool>,
   }
 
-  @obj // @deprecated("Directly create record instead")
-  external scrollToItemParams: (
+  @obj
+  external // @deprecated("Directly create record instead")
+  scrollToItemParams: (
     ~viewPosition: float=?,
     ~animated: bool=?,
     ~item: 'item,
@@ -39,12 +41,12 @@ module Make = (
 
   type scrollToOffsetParams = {
     offset: float,
-    animated?: bool,
+    animated: option<bool>,
   }
 
-  @obj // @deprecated("Directly create record instead")
-  external scrollToOffsetParams: (~animated: bool=?, ~offset: float, unit) => scrollToOffsetParams =
-    ""
+  @obj
+  external // @deprecated("Directly create record instead")
+  scrollToOffsetParams: (~animated: bool=?, ~offset: float, unit) => scrollToOffsetParams = ""
   @send
   external scrollToOffset: (T.t, scrollToOffsetParams) => unit = "scrollToOffset"
 

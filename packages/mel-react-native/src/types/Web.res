@@ -24,10 +24,11 @@ type rel = [
 ]
 
 type hrefAttrs = {
-  download?: string,
-  rel?: rel,
-  target?: target,
+  download: option<string>,
+  rel: option<rel>,
+  target: option<target>,
 }
 
-@obj // @deprecated("Directly create record instead")
-external hrefAttrs: (~download: string=?, ~rel: rel=?, ~target: target=?, unit) => hrefAttrs = ""
+@obj
+external // @deprecated("Directly create record instead")
+hrefAttrs: (~download: string=?, ~rel: rel=?, ~target: target=?, unit) => hrefAttrs = ""

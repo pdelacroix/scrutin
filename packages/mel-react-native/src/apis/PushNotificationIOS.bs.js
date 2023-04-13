@@ -1,7 +1,9 @@
-'use strict';
+
 
 
 var $$Notification = {};
 
-exports.$$Notification = $$Notification;
+export {
+  $$Notification ,
+}
 /* No side effect */

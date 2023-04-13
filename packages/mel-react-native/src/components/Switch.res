@@ -1,12 +1,13 @@
 include NativeElement
 
 type trackColor = {
-  \"true"?: Color.t,
-  \"false"?: Color.t,
+  \"true": option<Color.t>,
+  \"false": option<Color.t>,
 }
 
-@obj // @deprecated("Directly create record instead")
-external trackColor: (~\"true": Color.t=?, ~\"false": Color.t=?, unit) => trackColor = ""
+@obj
+external // @deprecated("Directly create record instead")
+trackColor: (~\"true": Color.t=?, ~\"false": Color.t=?, unit) => trackColor = ""
 
 @react.component @module("react-native")
 external make: (
