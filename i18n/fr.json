@@ -25,6 +25,7 @@
             "create": "Créer une élection"
         },
         "election.new": {
+            "title": "Nouvelle élection",
             "noPublicKey": "Pas de clef publique trouvée",
             "name": "Nom de l'élection",
             "description": "Description",

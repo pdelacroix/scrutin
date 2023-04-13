@@ -21,6 +21,7 @@
         "contact.clearAll": "Clear contacts",
         "election.home.create": "Create an election",
         "election.new": {
+            "title": "New election",
             "noPublicKey": "No public key found",
             "name": "Election name",
             "description": "Description",
