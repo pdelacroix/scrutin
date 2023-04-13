@@ -19,7 +19,7 @@
         "contact.item.phoneNumber": "Phone number",
         "contact.delete": "Delete",
         "contact.clearAll": "Clear contacts",
-        "election.home.create": "Create a new election",
+        "election.home.create": "Create an election",
         "election.new": {
             "noPublicKey": "No public key found",
             "name": "Election name",
