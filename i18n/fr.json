@@ -49,7 +49,7 @@
             "id": "Id de l'élection",
             "ownerPublicKey": "Administrateur",
             "params": "Paramètres",
-            "trustees": "Guardiens",
+            "trustees": "Gardiens",
             "ballotEvents": "Événements de vote",
             "showBallots": "Montrer les bulletins",
             "hideBallots": "Cacher les bulletins",
