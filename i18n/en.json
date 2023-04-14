@@ -5,6 +5,9 @@
           "create": "Create an election",
           "search": "Search an election..."
         },
+        "search": {
+          "header.title": "Search an election"
+        },
         "ballot.show": {
             "title": "Ballot",
             "election": "Election",

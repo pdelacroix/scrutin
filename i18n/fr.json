@@ -5,6 +5,9 @@
           "create": "Créer une élection",
           "search": "Chercher une élection..."
         },
+        "search": {
+          "header.title": "Chercher une élection"
+        },
         "ballot.show": {
             "title": "Bulletin de vote",
             "election": "Élection",
