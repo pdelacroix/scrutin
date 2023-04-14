@@ -30,7 +30,7 @@
             "header": "New election",
             "question": "Question",
             "noPublicKey": "No public key found",
-            "name": "Election name",
+            "title": "Title",
             "description": "Description",
             "owner": "Owner",
             "create": "Create",

@@ -32,7 +32,7 @@
             "header": "Nouvelle élection",
             "question": "Question",
             "noPublicKey": "Pas de clef publique trouvée",
-            "name": "Nom de l'élection",
+            "title": "Titre",
             "description": "Description",
             "owner": "Créateur",
             "create": "Créer",
