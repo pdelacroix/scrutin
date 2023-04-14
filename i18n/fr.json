@@ -1,6 +1,10 @@
 {
     "translation": {
         "app.title": "Scrutin : Elections sécurisés et verifiables",
+        "home": {
+          "create": "Créer une élection",
+          "search": "Chercher une élection..."
+        },
         "ballot.show": {
             "title": "Bulletin de vote",
             "election": "Élection",
@@ -20,9 +24,6 @@
             "item.phoneNumber": "Numéro de téléphone",
             "delete": "Delete",
             "clearAll": "Effacer les contacts"
-        },
-        "election.home": {
-            "create": "Créer une élection"
         },
         "election.new": {
             "header": "Nouvelle élection",

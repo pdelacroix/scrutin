@@ -1,6 +1,10 @@
 {
     "translation": {
         "app.title": "Scrutin: Secure, verifiable elections",
+        "home": {
+          "create": "Create an election",
+          "search": "Search an election..."
+        },
         "ballot.show": {
             "title": "Ballot",
             "election": "Election",
@@ -19,7 +23,6 @@
         "contact.item.phoneNumber": "Phone number",
         "contact.delete": "Delete",
         "contact.clearAll": "Clear contacts",
-        "election.home.create": "Create an election",
         "election.new": {
             "header": "New election",
             "question": "Question",
