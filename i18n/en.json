@@ -36,11 +36,7 @@
             "create": "Create",
             "next": "Next",
             "choiceList": {
-                "choices": "Choices",
-                "add": "Add",
-                "modal.choiceName": "Choice name",
-                "modal.back": "Back",
-                "modal.add": "Add"
+                "choices": "Choices"
             }
         },
         "election.show": {
