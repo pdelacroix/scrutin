@@ -52,7 +52,6 @@
             "choiceList": {
                 "choices": "Alternativer",
                 "add": "Legg til",
-                "error.atLeastTwoChoices": "Du trenger minst to alternativer",
                 "modal.choiceName": "Alternativsnavn",
                 "modal.back": "Tilbake",
                 "modal.add": "Legg til"

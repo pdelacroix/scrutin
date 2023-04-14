@@ -37,7 +37,6 @@
             "choiceList": {
                 "choices": "Choices",
                 "add": "Add",
-                "error.atLeastTwoChoices": "You need at least 2 choices",
                 "modal.choiceName": "Choice name",
                 "modal.back": "Back",
                 "modal.add": "Add"

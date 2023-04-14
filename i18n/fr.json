@@ -39,7 +39,6 @@
             "choiceList": {
                 "choices": "Choix",
                 "add": "Ajouter",
-                "error.atLeastTwoChoices": "Il faut au moins 2 choix",
                 "modal.choiceName": "Nom du choix",
                 "modal.back": "Retour",
                 "modal.add": "Ajouter"
