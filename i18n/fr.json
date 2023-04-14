@@ -36,6 +36,7 @@
             "description": "Description",
             "owner": "Créateur",
             "create": "Créer",
+            "next": "Suivant",
             "choiceList": {
                 "choices": "Choix",
                 "add": "Ajouter",

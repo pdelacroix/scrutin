@@ -34,6 +34,7 @@
             "description": "Description",
             "owner": "Owner",
             "create": "Create",
+            "next": "Next",
             "choiceList": {
                 "choices": "Choices",
                 "add": "Add",
