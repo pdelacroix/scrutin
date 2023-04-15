@@ -1,0 +1,8 @@
+(library
+ (name belenios_ui)
+ (public_name belenios-server.ui)
+ (libraries lwt tyxml belenios)
+ (modules_without_implementation i18n mails_admin_sig markup_types))
+
+(ocamllex markup_lexer)
+(menhir (modules markup_parser))
