@@ -58,10 +58,9 @@ on [Hosted Weblate](https://hosted.weblate.org/engage/scrutin/) \
 ## Developer instructions
 
 ```
-# Install dependencies (You need Node.js 14, use NVM if you need)
 npm install
 npm run re:start # or use the VSCode plugin
-npm run web
+npm start
 ```
 
 ## Annotated source code
