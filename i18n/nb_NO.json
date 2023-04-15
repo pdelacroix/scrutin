@@ -1,5 +1,8 @@
 {
     "translation": {
+        "home": {
+          "create": "Opprett ny avstemming"
+        },
         "ballot.show": {
             "title": "Stemmeseddel",
             "eventHash": "Begivenhetssjekksum",
