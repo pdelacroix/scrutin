@@ -8,7 +8,6 @@
             "ciphertext": "Kryptert tekst",
             "election": "Avstemming"
         },
-        "election.home.create": "Opprett ny avstemming",
         "election.show": {
             "choices": "Alternativer",
             "hideAdvanced": "Vis mindre",
@@ -45,15 +44,12 @@
         "contact.delete": "Slett",
         "election.new": {
             "noPublicKey": "Fant ingen offentlig nøkkel",
-            "name": "Avstemmingsnavn",
             "description": "Beskrivelse",
             "owner": "Eier",
             "create": "Opprett",
             "choiceList": {
                 "choices": "Alternativer",
-                "add": "Legg til",
                 "modal.choiceName": "Alternativsnavn",
-                "modal.back": "Tilbake",
                 "modal.add": "Legg til"
             }
         },

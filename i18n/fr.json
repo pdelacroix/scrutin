@@ -2,11 +2,11 @@
     "translation": {
         "app.title": "Scrutin : Elections sécurisés et verifiables",
         "home": {
-          "create": "Créer une élection",
-          "search": "Chercher une élection..."
+            "create": "Créer une élection",
+            "search": "Chercher une élection..."
         },
         "search": {
-          "header.title": "Chercher une élection"
+            "header.title": "Chercher une élection"
         },
         "ballot.show": {
             "title": "Bulletin de vote",
@@ -39,9 +39,7 @@
             "next": "Suivant",
             "choiceList": {
                 "choices": "Choix",
-                "add": "Ajouter",
                 "modal.choiceName": "Nom du choix",
-                "modal.back": "Retour",
                 "modal.add": "Ajouter"
             }
         },
