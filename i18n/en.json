@@ -70,7 +70,8 @@
                 "share": "Share",
                 "copy": "Copy",
                 "close": "Close"
-            }
+            },
+            "unnamed": "Unnamed election"
         },
         "settings": {
             "language": "Language",
