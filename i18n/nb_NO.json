@@ -1,7 +1,7 @@
 {
     "translation": {
         "home": {
-          "create": "Opprett ny avstemming"
+            "create": "Opprett ny avstemming"
         },
         "ballot.show": {
             "title": "Stemmeseddel",
@@ -52,7 +52,6 @@
             "create": "Opprett",
             "choiceList": {
                 "choices": "Alternativer",
-                "modal.choiceName": "Alternativsnavn",
                 "modal.add": "Legg til"
             }
         },

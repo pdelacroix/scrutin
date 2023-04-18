@@ -39,7 +39,6 @@
             "next": "Suivant",
             "choiceList": {
                 "choices": "Choix",
-                "modal.choiceName": "Nom du choix",
                 "modal.add": "Ajouter"
             }
         },
