@@ -51,8 +51,7 @@
             "owner": "Eier",
             "create": "Opprett",
             "choiceList": {
-                "choices": "Alternativer",
-                "modal.add": "Legg til"
+                "choices": "Alternativer"
             }
         },
         "settings": {
