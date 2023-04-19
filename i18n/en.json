@@ -8,6 +8,19 @@
         "search": {
           "header.title": "Search an election"
         },
+        "ballot.show": {
+            "title": "Ballot",
+            "election": "Election",
+            "eventHash": "Event Hash",
+            "previousId": "Previous Id",
+            "voter": "Voter",
+            "ciphertext": "Ciphertext"
+        },
+        "ballot.new": {
+            "choices": "Choices",
+            "vote": "Voter",
+            "noVotingRight": "You don't have voting right"
+        },
         "contact.title": "Contact",
         "contact.item.email": "Email",
         "contact.item.phoneNumber": "Phone number",
