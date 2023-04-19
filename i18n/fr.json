@@ -42,6 +42,7 @@
             }
         },
         "election.show": {
+            "unnamed": "Élection sans nom",
             "choices": "Choix",
             "status": "Status",
             "statusInProgress": "En cours",
