@@ -105,6 +105,10 @@
             "secretKey": "Secret key",
             "elections": "Elections",
             "ballots": "Ballots"
+        },
+        "utils.copybutton": {
+            "text": "Copy",
+            "feedback": "Copied!"
         }
     }
 }
