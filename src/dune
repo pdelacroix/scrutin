@@ -9,7 +9,10 @@
     (glob_files ./components/icons/*.js)
     (glob_files ./components/utils/*.js)
     (glob_files ./components/utils/*.svg)
-    (glob_files ./components/utils/*.png))
+    (glob_files ./components/utils/*.png)
+    ../packages/belenios_platform_melange/BigIntCompat.js
+    ../packages/belenios_platform_melange/jsbn.js
+    ../packages/belenios_platform_melange/jsbn2.js)
   (preprocess
     (pps reactjs-jsx-ppx))
   (compile_flags :standard -open Belt -open Paper -open ReactNative -w -9)

@@ -13,6 +13,11 @@ depends: [
   "melange-compiler-libs" {dev}
   "melange" {dev}
   "mel" {dev}
+  "atdgen" {dev}
+  "atdgen-runtime" {dev}
+  "atdgen-codec-runtime" {dev}
+  "seq" {dev}
+  "odig" {dev}
   "rescript-syntax" {dev}
   "reactjs-jsx-ppx" {dev}
   "ocaml-lsp-server" {dev}
@@ -27,4 +32,6 @@ pin-depends: [
   [ "mel.dev" "git+https://github.com/melange-re/melange.git#4df18aaa5468391c4b190ebc5d4c3ba38698a565" ]
   [ "rescript-syntax.dev" "git+https://github.com/melange-re/melange.git#4df18aaa5468391c4b190ebc5d4c3ba38698a565" ]
   [ "reactjs-jsx-ppx.dev" "git+https://github.com/melange-re/melange.git#4df18aaa5468391c4b190ebc5d4c3ba38698a565" ]
+  [ "seq.dev" "git+https://github.com/c-cube/seq.git" ]
+  [ "atdgen.dev" "git+https://github.com/pdelacroix/atd.git#11ef84e660e8d54b3b0421f17bffa26434ca3c1b" ]
 ]
