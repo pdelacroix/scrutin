@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:pdelacroix/bs-atdgen-codec-runtime.git
+	branch = master
+	commit = 61776257519635ec316c9b8f653fe1c09f05cd9a
+	parent = ce4f8031ecd77c52c0211738c9abc0c5018764e3
+	method = merge
+	cmdver = 0.4.5
