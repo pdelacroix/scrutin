@@ -135,6 +135,45 @@ let tuple4 decodeA decodeB decodeC decodeD json =
   else
     raise @@ DecodeError ("Expected array, got " ^ _stringify json)
 
+let tuple5 decodeA decodeB decodeC decodeD decodeE json =
+  if Js.Array.isArray json then begin
+    let source = (Obj.magic (json : Js.Json.t) : Js.Json.t array) in
+    let length = Js.Array.length source in
+    if length = 5 then
+      try
+        decodeA (Array.unsafe_get source 0),
+        decodeB (Array.unsafe_get source 1),
+        decodeC (Array.unsafe_get source 2),
+        decodeD (Array.unsafe_get source 3),
+        decodeE (Array.unsafe_get source 4)
+      with
+        DecodeError msg -> raise @@ DecodeError (msg ^ "\n\tin tuple5")
+    else
+      raise @@ DecodeError ({j|Expected array of length 5, got array of length $length|j})
+  end
+  else
+    raise @@ DecodeError ("Expected array, got " ^ _stringify json)
+
+let tuple6 decodeA decodeB decodeC decodeD decodeE decodeF json =
+  if Js.Array.isArray json then begin
+    let source = (Obj.magic (json : Js.Json.t) : Js.Json.t array) in
+    let length = Js.Array.length source in
+    if length = 6 then
+      try
+        decodeA (Array.unsafe_get source 0),
+        decodeB (Array.unsafe_get source 1),
+        decodeC (Array.unsafe_get source 2),
+        decodeD (Array.unsafe_get source 3),
+        decodeE (Array.unsafe_get source 4),
+        decodeF (Array.unsafe_get source 5)
+      with
+        DecodeError msg -> raise @@ DecodeError (msg ^ "\n\tin tuple6")
+    else
+      raise @@ DecodeError ({j|Expected array of length 6, got array of length $length|j})
+  end
+  else
+    raise @@ DecodeError ("Expected array, got " ^ _stringify json)
+
 let dict decode json = 
   if Js.typeof json = "object" && 
       not (Js.Array.isArray json) && 

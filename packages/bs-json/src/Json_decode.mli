@@ -277,6 +277,26 @@ val tuple4 : 'a decoder -> 'b decoder -> 'c decoder -> 'd decoder -> ('a * 'b * 
 @raise [DecodeError] if unsuccessful
 *)
 
+val tuple5 : 'a decoder -> 'b decoder -> 'c decoder -> 'd decoder -> 'e decoder -> ('a * 'b * 'c * 'd * 'e) decoder
+(** Decodes a JSON array with five elements into an ['a * 'b * 'c * 'd * 'e] tuple
+    using each of the given decoders in order.
+
+{b Returns} an ['a * 'b * 'c * 'd * 'e] if the JSON value is a JSON array of length 5
+    and all its elements are successfully decoded.
+
+@raise [DecodeError] if unsuccessful
+*)
+
+val tuple6 : 'a decoder -> 'b decoder -> 'c decoder -> 'd decoder -> 'e decoder -> 'f decoder -> ('a * 'b * 'c * 'd * 'e * 'f) decoder
+(** Decodes a JSON array with six elements into an ['a * 'b * 'c * 'd * 'e * 'f] tuple
+    using each of the given decoders in order.
+
+{b Returns} an ['a * 'b * 'c * 'd * 'e * 'f] if the JSON value is a JSON array of length 6
+    and all its elements are successfully decoded.
+
+@raise [DecodeError] if unsuccessful
+*)
+
 val dict : 'a decoder -> 'a Js.Dict.t decoder
 (** Decodes a JSON object into a dict using the given decoder on each of its values
     

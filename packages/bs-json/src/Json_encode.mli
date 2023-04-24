@@ -42,6 +42,12 @@ val tuple3 : 'a encoder -> 'b encoder -> 'c encoder -> ('a * 'b * 'c) -> Js.Json
 val tuple4 : 'a encoder -> 'b encoder -> 'c encoder -> 'd encoder -> ('a * 'b * 'c * 'd) -> Js.Json.t
 (** [tuple4 enc enc enc enc tuple] creates a JSON array from a tuple of size 4 *)
 
+val tuple5 : 'a encoder -> 'b encoder -> 'c encoder -> 'd encoder -> 'e encoder -> ('a * 'b * 'c * 'd * 'e) -> Js.Json.t
+(** [tuple5 enc enc enc enc enc tuple] creates a JSON array from a tuple of size 5 *)
+
+val tuple6 : 'a encoder -> 'b encoder -> 'c encoder -> 'd encoder -> 'e encoder -> 'f encoder -> ('a * 'b * 'c * 'd * 'e * 'f) -> Js.Json.t
+(** [tuple5 enc enc enc enc enc enc tuple] creates a JSON array from a tuple of size 6 *)
+
 external jsonDict : Js.Json.t Js_dict.t -> Js.Json.t = "%identity"
 (** [jsonDict d] makes a JSON object of the [Js.Dict.t] [d] *)
 

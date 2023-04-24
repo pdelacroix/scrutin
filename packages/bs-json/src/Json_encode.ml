@@ -56,6 +56,10 @@ let tuple3 encodeA encodeB encodeC (a, b, c) =
   jsonArray [|encodeA a; encodeB b; encodeC c|]
 let tuple4 encodeA encodeB encodeC encodeD (a, b, c, d) =
   jsonArray [|encodeA a; encodeB b; encodeC c; encodeD d|]
+let tuple5 encodeA encodeB encodeC encodeD encodeE (a, b, c, d, e) =
+  jsonArray [|encodeA a; encodeB b; encodeC c; encodeD d; encodeE e|]
+let tuple6 encodeA encodeB encodeC encodeD encodeE encodeF (a, b, c, d, e, f) =
+  jsonArray [|encodeA a; encodeB b; encodeC c; encodeD d; encodeE e; encodeF f|]
 
 external stringArray : string array -> Js.Json.t = "%identity"
 external numberArray : float array -> Js.Json.t = "%identity"
