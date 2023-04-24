@@ -40,6 +40,10 @@ val tuple3 : 'a t -> 'b t -> 'c t -> ('a * 'b * 'c) t
 
 val tuple4 : 'a t -> 'b t -> 'c t -> 'd t -> ('a * 'b * 'c * 'd) t
 
+val tuple5 : 'a t -> 'b t -> 'c t -> 'd t -> 'e t -> ('a * 'b * 'c * 'd * 'e) t
+
+val tuple6 : 'a t -> 'b t -> 'c t -> 'd t -> 'e t -> 'f t -> ('a * 'b * 'c * 'd * 'e * 'f) t
+
 val constr0 : string -> Js.Json.t
 
 val constr1 : string -> 'a t -> 'a -> Js.Json.t

@@ -49,6 +49,10 @@ val tuple3 : 'a t -> 'b t -> 'c t -> ('a * 'b * 'c) t
 
 val tuple4 : 'a t -> 'b t -> 'c t -> 'd t -> ('a * 'b * 'c * 'd) t
 
+val tuple5 : 'a t -> 'b t -> 'c t -> 'd t -> 'e t -> ('a * 'b * 'c * 'd * 'e) t
+
+val tuple6 : 'a t -> 'b t -> 'c t -> 'd t -> 'e t -> 'f t -> ('a * 'b * 'c * 'd * 'e * 'f) t
+
 val enum : (string * [ `Single of 'a | `Decode of 'a t ]) list -> 'a t
 
 val nullable : 'a t -> 'a option t
