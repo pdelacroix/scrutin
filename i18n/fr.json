@@ -21,9 +21,6 @@
             "vote": "Votant",
             "noVotingRight": "Vous n'avez pas le droit de voter"
         },
-        "contact": {
-            "delete": "Delete"
-        },
         "election.new": {
             "header": "Nouvelle élection",
             "question": "Question",
