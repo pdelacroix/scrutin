@@ -22,7 +22,7 @@
             "noVotingRight": "You don't have voting right"
         },
         "invitation": {
-            "title": "Contact",
+            "title": "Invitation",
             "item.email": "Email",
             "item.phoneNumber": "Phone number",
             "delete": "Delete",
