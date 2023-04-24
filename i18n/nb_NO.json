@@ -1,7 +1,8 @@
 {
     "translation": {
         "home": {
-            "create": "Opprett ny avstemming"
+            "create": "Opprett ny avstemming",
+            "search": "Søk etter avstemming …"
         },
         "ballot.show": {
             "title": "Stemmeseddel",
@@ -35,7 +36,15 @@
             "result": "Resultat",
             "admin": "Du er administrator",
             "notAdmin": "Du er ikke administrator",
-            "status": "Status"
+            "status": "Status",
+            "createInvite": {
+                "button": "Opprett invitasjon",
+                "share": "Del",
+                "copy": "Kopier",
+                "close": "Lukk",
+                "title": "Del invitasjon"
+            },
+            "unnamed": "Avstemming uten navn"
         },
         "ballot.new": {
             "choices": "Alternativer",
@@ -52,14 +61,19 @@
             "create": "Opprett",
             "choiceList": {
                 "choices": "Alternativer"
-            }
+            },
+            "header": "Ny avstemming",
+            "question": "Spørsmål",
+            "title": "Navn",
+            "next": "Neste"
         },
         "settings": {
             "language": "Språk",
             "internals": "Avanserte innstillinger",
             "identities": "Identiteter",
             "contacts": "Kontakter",
-            "trustees": "Valgansatte"
+            "trustees": "Valgansatte",
+            "events": "Begivenheter"
         },
         "trustees": {
             "clear": "Tøm",
@@ -84,6 +98,13 @@
         },
         "contact.title": "Kontakt",
         "contact.clearAll": "Tøm kontakter",
-        "contact.item.email": "E-post"
+        "contact.item.email": "E-post",
+        "events": {
+            "title": "Begivenheter",
+            "clear": "Tøm"
+        },
+        "search": {
+            "header.title": "Søk etter avstemming"
+        }
     }
 }
