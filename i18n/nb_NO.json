@@ -52,7 +52,6 @@
             "noVotingRight": "Du har ikke stemmerett"
         },
         "app.title": "Scrutin: Sikker, verifiserbare avstemminger",
-        "contact.item.phoneNumber": "Telefonnummer",
         "contact.delete": "Slett",
         "election.new": {
             "noPublicKey": "Fant ingen offentlig nøkkel",
@@ -96,9 +95,7 @@
             "elections": "Avstemminger",
             "ballots": "Stemmesedler"
         },
-        "contact.title": "Kontakt",
         "contact.clearAll": "Tøm kontakter",
-        "contact.item.email": "E-post",
         "events": {
             "title": "Begivenheter",
             "clear": "Tøm"
