@@ -21,11 +21,13 @@
             "vote": "Voter",
             "noVotingRight": "You don't have voting right"
         },
-        "contact.title": "Contact",
-        "contact.item.email": "Email",
-        "contact.item.phoneNumber": "Phone number",
-        "contact.delete": "Delete",
-        "contact.clearAll": "Clear contacts",
+        "invitation": {
+            "title": "Contact",
+            "item.email": "Email",
+            "item.phoneNumber": "Phone number",
+            "delete": "Delete",
+            "clearAll": "Clear contacts"
+        },
         "election.new": {
             "header": "New election",
             "question": "Question",
