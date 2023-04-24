@@ -22,7 +22,6 @@
             "noVotingRight": "Vous n'avez pas le droit de voter"
         },
         "contact": {
-            "item.email": "Email",
             "delete": "Delete"
         },
         "election.new": {
