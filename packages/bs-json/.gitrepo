@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:pdelacroix/bs-json.git
+	branch = master
+	commit = 47ad1febb7c0d52dac2964e1dd4cdff63508b4b4
+	parent = 9c74188f1bc2dbcd156cc638a14dd3f89c3a954e
+	method = merge
+	cmdver = 0.4.5
