@@ -19,7 +19,15 @@
 (*  <http://www.gnu.org/licenses/>.                                       *)
 (**************************************************************************)
 
+module Json = Atdgen_runtime.Util.Json
+
+type 'a reader = 'a Json.reader
+type 'a writer = 'a Json.writer
+
 val debug : string -> unit
+
+val sread : (string -> 'a) -> 'a reader
+val swrite : ('a -> string) -> 'a writer
 
 val sha256_hex : string -> string
 val pbkdf2_utf8 : iterations:int -> salt:string -> string -> string

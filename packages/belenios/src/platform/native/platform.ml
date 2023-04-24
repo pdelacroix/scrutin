@@ -21,6 +21,14 @@
 
 let debug x = prerr_endline x
 
+let sread of_string state buf =
+  match Yojson.Safe.read_json state buf with
+  | `String x -> of_string x
+  | _ -> failwith "read_string"
+
+let swrite to_string buf x =
+  Yojson.Safe.write_json buf (`String (to_string x))
+
 let sha256_hex x = Cryptokit.(x |>
   hash_string (Hash.sha256 ()) |>
   transform_string (Hexa.encode ())

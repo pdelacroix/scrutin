@@ -70,13 +70,9 @@ module Option = struct
     | Some x -> f x
 end
 
-let sread of_string state buf =
-  match Yojson.Safe.read_json state buf with
-  | `String x -> of_string x
-  | _ -> failwith "read_string"
+let sread = sread
 
-let swrite to_string buf x =
-  Yojson.Safe.write_json buf (`String (to_string x))
+let swrite = swrite
 
 let save_to filename writer x =
   let oc = open_out filename in
