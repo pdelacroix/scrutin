@@ -21,6 +21,11 @@
 
 module Json = Atdgen_runtime.Util.Json
 
+type 'a shape =
+  [ `Atomic of 'a
+  | `Array of 'a shape array
+  ]
+
 type 'a reader = 'a Json.reader
 type 'a writer = 'a Json.writer
 
@@ -28,6 +33,9 @@ val debug : string -> unit
 
 val sread : (string -> 'a) -> 'a reader
 val swrite : ('a -> string) -> 'a writer
+
+val read_shape : 'a reader -> 'a shape reader
+val write_shape : 'a writer -> 'a shape writer
 
 val sha256_hex : string -> string
 val pbkdf2_utf8 : iterations:int -> salt:string -> string -> string

@@ -126,3 +126,9 @@ module Atd_shape_j : sig
   val write_shape : 'a writer -> 'a Shape.t writer
   val read_shape : 'a reader -> 'a Shape.t reader
 end
+
+module Atd_shape_bs : sig
+  open Atdgen_runtime.Util.Json
+  val write_shape : 'a writer -> 'a Shape.t writer
+  val read_shape : 'a reader -> 'a Shape.t reader
+end
