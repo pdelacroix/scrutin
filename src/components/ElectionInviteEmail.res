@@ -7,7 +7,9 @@ let make = (~election: Election.t, ~electionId) => {
   let (sendInvite, setSendInvite) = React.useState(_ => true)
 
   let onSubmit = _ => {
-    Array.forEach(emails, email => {
+    emails
+    ->Array.keep(email => email != "")
+    ->Array.forEach(email => {
       let voter = Account.make()
       let invitation: Invitation.t = { userId: voter.userId, email }
       dispatch(Invitation_Add(invitation))
