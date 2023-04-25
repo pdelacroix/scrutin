@@ -4,7 +4,7 @@ let reducer = (state: State.t, action: StateMsg.t) => {
   | Reset => (
       State.initial,
       [
-        StateEffect.loadIdentities,
+        StateEffect.loadAccounts,
         StateEffect.loadTrustees,
         StateEffect.loadInvitations,
         StateEffect.fetchEvents,
@@ -14,9 +14,9 @@ let reducer = (state: State.t, action: StateMsg.t) => {
 
   | Fetching_Events_End => ({...state, fetchingEvents: false}, [])
 
-  | Identity_Add(id) =>
-    let ids = Array.concat(state.ids, [id])
-    ({...state, ids}, [StateEffect.storeIdentities(ids)])
+  | Account_Add(account) =>
+    let accounts = Array.concat(state.accounts, [account])
+    ({...state, accounts}, [StateEffect.storeAccounts(accounts)])
 
   | Event_Add(event) =>
     let events = Array.concat(state.events, [event])
@@ -40,21 +40,15 @@ let reducer = (state: State.t, action: StateMsg.t) => {
 
   | Cache_Election_Add(cid, election) =>
     let elections = Map.String.set(state.elections, cid, election)
-    let electionNextIds = switch election.previousId {
-    | Some(previousId) => Map.String.set(state.electionNextIds, previousId, cid)
-    | None => state.electionNextIds
+    let electionLatestIds = switch election.originId {
+    | Some(originId) => Map.String.set(state.electionLatestIds, originId, cid)
+    | None => state.electionLatestIds
     }
-    ({...state, elections, electionNextIds}, [])
+    ({...state, elections, electionLatestIds}, [])
 
-  | Cache_Ballot_Add(cid, ballot) =>
-    let ballots = Map.String.set(state.ballots, cid, ballot)
-    let ballotNextIds = switch ballot.previousId {
-    | Some(previousId) =>
-      Js.log((previousId, cid))
-      Map.String.set(state.ballotNextIds, previousId, cid)
-    | None => state.ballotNextIds
-    }
-    ({...state, ballots, ballotNextIds}, [])
+  | Cache_Ballot_Add(_cid, ballot) =>
+    let ballots = Array.concat(state.ballots, [ballot])
+    ({...state, ballots}, [])
 
   | Config_Store_Language(language) => (state, [StateEffect.storeLanguage(language)])
 

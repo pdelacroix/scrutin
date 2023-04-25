@@ -1,6 +1,6 @@
 type t = {
-  hexPublicKey: string,
-  hexSecretKey: string,
+  userId: string,
+  secret: string,
 }
 
 let make = () => {
@@ -8,27 +8,27 @@ let make = () => {
 
   (
     {
-      hexPublicKey: Sjcl.Ecdsa.PublicKey.toHex(publicKey),
-      hexSecretKey: Sjcl.Ecdsa.SecretKey.toHex(secretKey),
+      userId: Sjcl.Ecdsa.PublicKey.toHex(publicKey),
+      secret: Sjcl.Ecdsa.SecretKey.toHex(secretKey),
     }: t
   )
 }
 
-let make2 = (~hexSecretKey) => {
-  let sec = Sjcl.Bn.fromBits(Sjcl.Hex.toBits(hexSecretKey))
+let make2 = (~secret) => {
+  let sec = Sjcl.Bn.fromBits(Sjcl.Hex.toBits(secret))
   let keys = Sjcl.Ecdsa.generateKeysFromSecretKey(sec)
-  let hexPublicKey = Sjcl.Ecdsa.PublicKey.toHex(keys.pub)
+  let userId = Sjcl.Ecdsa.PublicKey.toHex(keys.pub)
 
   {
-    hexPublicKey,
-    hexSecretKey,
+    userId,
+    secret,
   }
 }
 
 // #### methods
 
-let signHex = (id, hexStr) => {
-  let secretKey = Sjcl.Ecdsa.SecretKey.fromHex(id.hexSecretKey)
+let signHex = (account, hexStr) => {
+  let secretKey = Sjcl.Ecdsa.SecretKey.fromHex(account.secret)
   let baEventHash = Sjcl.Hex.toBits(hexStr)
   let baSig = Sjcl.Ecdsa.SecretKey.sign(secretKey, baEventHash)
   Sjcl.Hex.fromBits(baSig)
@@ -43,7 +43,7 @@ external stringify_array: array<t> => string = "JSON.stringify"
 
 // #### Storage
 
-let storageKey = "identities"
+let storageKey = "accounts"
 
 let loadAll = () =>
   ReactNativeAsyncStorage.getItem(storageKey)
@@ -51,6 +51,6 @@ let loadAll = () =>
   ->Promise.thenResolve(Option.map(_, parse_array))
   ->Promise.thenResolve(Option.getWithDefault(_, []))
 
-let store_all = ids => ReactNativeAsyncStorage.setItem(storageKey, stringify_array(ids))->ignore
+let store_all = accounts => ReactNativeAsyncStorage.setItem(storageKey, stringify_array(accounts))->ignore
 
 let clear = () => ReactNativeAsyncStorage.removeItem(storageKey)->ignore

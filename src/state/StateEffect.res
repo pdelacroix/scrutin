@@ -2,18 +2,16 @@
 
 let cacheUpdate = (ev: Event_.t, dispatch) => {
   switch ev.type_ {
-  | #"election.create" =>
+  | #"election" | #"election.update" =>
     dispatch(StateMsg.Cache_Election_Add(ev.cid, Event_.SignedElection.unwrap(ev)))
-  | #"election.update" =>
-    dispatch(StateMsg.Cache_Election_Add(ev.cid, Event_.SignedElection.unwrap(ev)))
-  | #"ballot.create" => dispatch(StateMsg.Cache_Ballot_Add(ev.cid, Event_.SignedBallot.unwrap(ev)))
-  | #"ballot.update" => dispatch(StateMsg.Cache_Ballot_Add(ev.cid, Event_.SignedBallot.unwrap(ev)))
+  | #"ballot" =>
+    dispatch(StateMsg.Cache_Ballot_Add(ev.cid, Event_.SignedBallot.unwrap(ev)))
   }
 }
 
 // ## LocalStorage - Store
 
-let storeIdentities = (ids, _dispatch) => Account.store_all(ids)
+let storeAccounts = (ids, _dispatch) => Account.store_all(ids)
 let storeEvents = (evs, _dispatch) => Event_.store_all(evs)
 let storeTrustees = (trustees, _dispatch) => Trustee.store_all(trustees)
 let storeInvitations = (invitations, _dispatch) =>
@@ -23,11 +21,11 @@ let storeLanguage = (language, _dispatch) =>
 
 // ## LocalStorage - Load
 
-let loadIdentities = dispatch => {
+let loadAccounts = dispatch => {
   Account.loadAll()
-  ->Promise.thenResolve(ids => {
-    Array.map(ids, id => dispatch(StateMsg.Identity_Add(id)))
-    // FIX: Identity_Add call storeIdentities as an effect...
+  ->Promise.thenResolve(accounts => {
+    Array.map(accounts, account => dispatch(StateMsg.Account_Add(account)))
+    // FIX: Account_Add call storeAccount as an effect...
   })
   ->ignore
 }
@@ -71,7 +69,7 @@ let loadLanguage = ((), _dispatch) =>
 
 // ## LocalStorage - Clear
 
-let clearIdentities = _dispatch => Account.clear()
+let clearAccounts = _dispatch => Account.clear()
 let clearEvents = _dispatch => Event_.clear()
 let clearTrustees = _dispatch => Trustee.clear()
 
@@ -109,8 +107,8 @@ let goToUrl = dispatch => {
   if ReactNative.Platform.os == #web {
     let url = RescriptReactRouter.dangerouslyGetInitialUrl()
     if String.length(url.hash) > 12 {
-      let hexSecretKey = url.hash
-      dispatch(StateMsg.Identity_Add(Account.make2(~hexSecretKey)))
+      let secret = url.hash
+      dispatch(StateMsg.Account_Add(Account.make2(~secret)))
     }
     dispatch(Navigate(url.path))
   }
