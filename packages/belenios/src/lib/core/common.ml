@@ -74,14 +74,6 @@ let sread = sread
 
 let swrite = swrite
 
-let save_to filename writer x =
-  let oc = open_out filename in
-  let ob = Bi_outbuf.create_channel_writer oc in
-  writer ob x;
-  Bi_outbuf.add_char ob '\n';
-  Bi_outbuf.flush_channel_writer ob;
-  close_out oc;;
-
 let b64_order = "+/0123456789aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ"
 
 let compare_b64 a b =
