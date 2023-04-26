@@ -10,7 +10,7 @@ let make = () => {
 
   <>
     <Header />
-    <List.Section title={t(. "settings.language")} style=S.marginX>
+    <Paper.List.Section title={t(. "settings.language")} style=S.marginX>
       <S.SegmentedButtons
         value=language
         buttons=[
@@ -23,18 +23,18 @@ let make = () => {
           dispatch(Config_Store_Language(lang))
         }}
       />
-    </List.Section>
-    <List.Section title={t(. "settings.internals")} style=S.marginX>
-      <List.Item
+    </Paper.List.Section>
+    <Paper.List.Section title={t(. "settings.internals")} style=S.marginX>
+      <Paper.List.Item
         title={t(. "settings.identities")} onPress={_ => dispatch(Navigate(list{"identities"}))}
       />
-      <List.Item
+      <Paper.List.Item
         title={t(. "settings.trustees")} onPress={_ => dispatch(Navigate(list{"trustees"}))}
       />
-      <List.Item
+      <Paper.List.Item
         title={t(. "settings.contacts")} onPress={_ => dispatch(Navigate(list{"contacts"}))}
       />
-      <List.Item title={t(. "settings.events")} onPress={_ => dispatch(Navigate(list{"events"}))} />
-    </List.Section>
+      <Paper.List.Item title={t(. "settings.events")} onPress={_ => dispatch(Navigate(list{"events"}))} />
+    </Paper.List.Section>
   </>
 }

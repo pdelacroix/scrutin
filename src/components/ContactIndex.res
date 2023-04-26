@@ -5,36 +5,36 @@ let make = () => {
 
   <>
     <S.Title> {t(. "invitation.title")->React.string} </S.Title>
-    <List.Section title="" style=S.marginX>
+    <Paper.List.Section title="" style=S.marginX>
       {Array.mapWithIndex(state.invitations, (i, invitation) => {
         <Card key=invitation.userId>
           <Card.Content>
-            <List.Item
+            <Paper.List.Item
               title={t(. "invitation.item.email")}
               description={Option.getWithDefault(invitation.email, "")}
             />
-            <List.Item
+            <Paper.List.Item
               title={t(. "invitation.item.phoneNumber")}
               description={Option.getWithDefault(invitation.phoneNumber, "")}
             />
-            <List.Item title={"0x" ++ invitation.userId} />
+            <Paper.List.Item title={"0x" ++ invitation.userId} />
           </Card.Content>
           <Card.Actions>
-            <Button mode=#contained onPress={_ => dispatch(Invitation_Remove(i))}>
+            <Paper.Button mode=#contained onPress={_ => dispatch(Invitation_Remove(i))}>
               {t(. "invitation.delete")->React.string}
-            </Button>
+            </Paper.Button>
           </Card.Actions>
         </Card>
       })->React.array}
-    </List.Section>
-    <Button
+    </Paper.List.Section>
+    <Paper.Button
       mode=#outlined
       onPress={_ => {
         Invitation.clear()
         dispatch(Reset)
       }}>
       {t(. "invitation.clearAll")->React.string}
-    </Button>
+    </Paper.Button>
     <S.Title> {"-"->React.string} </S.Title>
   </>
 }

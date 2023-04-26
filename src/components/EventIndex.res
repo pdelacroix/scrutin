@@ -16,7 +16,7 @@ module Item = {
     let onPress = _ => ()
 
     <Card>
-      <List.Item key=event.cid title={t(. "events.item.type")} description onPress />
+      <Paper.List.Item key=event.cid title={t(. "events.item.type")} description onPress />
     </Card>
   }
 }
@@ -31,9 +31,9 @@ let make = () => {
     dispatch(Reset)
   }
 
-  <List.Section title={t(. "events.title")}>
+  <Paper.List.Section title={t(. "events.title")}>
     {Array.map(state.events, event => <Item event key=event.cid />)->React.array}
     <S.Title> {"-"->React.string} </S.Title>
-    <Button mode=#contained onPress=clear> {t(. "events.clear")->React.string} </Button>
-  </List.Section>
+    <Paper.Button mode=#contained onPress=clear> {t(. "events.clear")->React.string} </Paper.Button>
+  </Paper.List.Section>
 }

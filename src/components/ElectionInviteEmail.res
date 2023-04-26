@@ -81,7 +81,7 @@ let make = (~election: Election.t, ~electionId) => {
       title="+"
       onPress={_ => setEmails(emails => Array.concat(emails, [""]))}
     />
-    <List.Item
+    <Paper.List.Item
       title="Envoyer une invitation"
       description="Tous les participants recevront un email"
       onPress={_ => setSendInvite(b => !b)}

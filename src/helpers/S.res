@@ -145,9 +145,9 @@ module Button = {
     | None => defaultTitleStyle
     }
 
-    <Button mode=#contained style onPress>
+    <Paper.Button mode=#contained style onPress>
       <Text style=titleStyle ?testID> {title->React.string} </Text>
-    </Button>
+    </Paper.Button>
   }
 }
 
@@ -163,7 +163,7 @@ module TextInput = {
       (),
     )
 
-    <TextInput style mode=#flat ?label ?testID ?placeholder
+    <Paper.TextInput style mode=#flat ?label ?testID ?placeholder
     value onChangeText />
   }
 }

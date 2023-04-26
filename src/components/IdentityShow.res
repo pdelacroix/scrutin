@@ -21,27 +21,27 @@ let make = (~publicKey) => {
   //  ->Map.String.toArray
 
   <>
-    <List.Section title={t(. "identity.show.title")}>
-      <List.Item title={t(. "identity.show.publicKey")} description=publicKey />
-      <List.Item title={t(. "identity.show.secretKey")} description=secretKey />
-      <List.Accordion title={t(. "identity.show.elections")}>
+    <Paper.List.Section title={t(. "identity.show.title")}>
+      <Paper.List.Item title={t(. "identity.show.publicKey")} description=publicKey />
+      <Paper.List.Item title={t(. "identity.show.secretKey")} description=secretKey />
+      <Paper.List.Accordion title={t(. "identity.show.elections")}>
         {Array.map(elections, ((eventHash, _election)) => {
-          <List.Item
+          <Paper.List.Item
             title=eventHash
             key=eventHash
             onPress={_ => dispatch(Navigate(list{"elections", eventHash}))}
           />
         })->React.array}
-      </List.Accordion>
-      //<List.Accordion title={t(. "identity.show.ballots")}>
+      </Paper.List.Accordion>
+      //<Paper.List.Accordion title={t(. "identity.show.ballots")}>
       //  {Array.map(ballots, ((eventHash, _ballot)) => {
-      //    <List.Item
+      //    <Paper.List.Item
       //      title=eventHash
       //      key=eventHash
       //      onPress={_ => dispatch(Navigate(list{"ballots", eventHash}))}
       //    />
       //  })->React.array}
-      //</List.Accordion>
-    </List.Section>
+      //</Paper.List.Accordion>
+    </Paper.List.Section>
   </>
 }

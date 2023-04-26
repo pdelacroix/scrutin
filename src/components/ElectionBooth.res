@@ -3,10 +3,10 @@ module Choice = {
   let make = (~name, ~selected, ~onSelect) => {
     let iconName = selected ? "radiobox-marked" : "radiobox-blank"
 
-    <List.Item
+    <Paper.List.Item
       title=name
       style={Style.viewStyle(~padding=20.0->Style.dp, ~paddingLeft=40.0->Style.dp, ())}
-      left={_ => <List.Icon icon={Icon.name(iconName)} />}
+      left={_ => <Paper.List.Icon icon={Icon.name(iconName)} />}
       onPress={_ => onSelect()}
     />
   }

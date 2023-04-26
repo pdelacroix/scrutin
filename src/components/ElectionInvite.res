@@ -17,9 +17,9 @@ let make = (~election: Election.t, ~electionId) => {
       testID="button-invite-link"
       onPress={_ => dispatch(Navigate(list{"elections", electionId, "invite_link"}))}
     />
-    <Button mode=#text
+    <Paper.Button mode=#text
       onPress={_ => dispatch(Navigate(list{"elections", electionId, "invite_manage"}))}>
       {"Gérer les invitations"->React.string}
-    </Button>
+    </Paper.Button>
   </>
 }

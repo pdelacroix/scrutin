@@ -8,13 +8,13 @@ module Item = {
 
     <Card style={S.marginY(8.0)}>
       <Card.Content>
-        <List.Section title="">
-          <List.Item
+        <Paper.List.Section title="">
+          <Paper.List.Item
             onPress={_ => dispatch(Navigate(list{"elections", id}))}
             title=name
             description=electionParams.description
           />
-        </List.Section>
+        </Paper.List.Section>
       </Card.Content>
     </Card>
   }
@@ -40,9 +40,9 @@ let make = () => {
         />
       </S.Col>
       <S.Col>
-        <Button onPress=onSearch>
+        <Paper.Button onPress=onSearch>
           <SIcon.ButtonSearch />
-        </Button>
+        </Paper.Button>
       </S.Col>
     </S.Row>
     {state.elections
