@@ -97,7 +97,7 @@
   (include_subdirs unqualified)
   (library
     (name belenios_platform_melange)
-    (libraries atdgen_codec_runtime)
+    (libraries atdgen_codec_runtime belenios_compat_melange)
     (implements belenios_platform)
     (modes melange)
     (flags -w -9-27-32-20))
@@ -229,13 +229,23 @@
     (deps serializable_bs.mli)
     (action (run cp %{deps} %{targets})))
   )
+(subdir
+  packages/belenios/src/lib/shell
+  (include_subdirs unqualified)
+  (library
+    (name belenios)
+    (libraries bs_json belenios_platform belenios_platform_melange belenios_core belenios_v1 atdgen_codec_runtime belenios_compat_melange)
+    (wrapped true)
+    (modes melange)
+    (flags -w -9-27-32-20))
+  )
 
 (subdir
   packages/belenios/src/platform
   (copy_files version/version.ml)
   (library
     (name belenios_platform)
-    (libraries base64 hex atdgen_codec_runtime)
+    (libraries base64 hex atdgen_codec_runtime belenios_compat_melange)
     (wrapped true)
     (modes melange)
     (flags -w -9-27-32-20)

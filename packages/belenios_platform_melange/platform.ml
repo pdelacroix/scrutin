@@ -7,10 +7,25 @@ type 'a shape =
 
 external json_string : string -> Js.Json.t = "%identity"
 
+(* type 'a reader = Js.Json.t -> 'a *)
+(* type 'a writer = 'a -> Js.Json.t *)
+
 type 'a reader = 'a Json.reader
 type 'a writer = 'a Json.writer
 
 let debug x = Js.log x
+
+let read wrap json =
+  Atdgen_runtime.json_of_jsont json
+  |> wrap
+
+let write unwrap x =
+  unwrap x
+  |> Atdgen_runtime.jsont_of_json
+
+let read_json = Atdgen_runtime.json_of_jsont
+
+let write_json = Atdgen_runtime.jsont_of_json
 
 let sread of_string json =
   match Js.Json.classify json with
