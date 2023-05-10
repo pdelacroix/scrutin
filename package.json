@@ -24,7 +24,7 @@
     "opam:init": "opam switch create . 4.14.1 -y --deps-only && opam update",
     "opam:deps": "opam install -y . --deps-only && opam pin -y add scrutin.dev .",
     "setup": "npm run opam:init && npm run opam:deps && npm install",
-    "build": "opam exec -- dune build @react"
+    "build": "opam exec -- dune build @melange"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.2.3",
