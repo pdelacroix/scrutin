@@ -23,6 +23,8 @@ open Belenios_core
 open Serializable_j
 open Signatures
 open Common
+open Belenios_platform
+open Platform
 
 let get_version x =
   let j = Yojson.Safe.from_string x in
@@ -62,11 +64,9 @@ module MakeResult (X : ELECTION_BASE) = struct
   open X
   type result = S.t Election_result.t
 
-  let write_result buf x =
-    Yojson.Safe.write_json buf (Election_result.unwrap x)
+  let write_result : result writer = write Election_result.unwrap
 
-  let read_result state buf =
-    Election_result.wrap S.x (Yojson.Safe.read_json state buf)
+  let read_result = Platform.read (Election_result.wrap S.x)
 
 end
 
@@ -128,7 +128,7 @@ let compute_checksums ~election ~trustees ~public_credentials ~shuffles ~encrypt
     let tc_name = k.trustee_name in
     {tc_checksum; tc_name}
   in
-  let trustees = trustees_of_string Yojson.Safe.read_json trustees in
+  let trustees = trustees_of_string read_json trustees in
   let ec_trustees =
     trustees
     |> List.map

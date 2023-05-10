@@ -31,6 +31,14 @@ type 'a writer = 'a Json.writer
 
 val debug : string -> unit
 
+val read : (Yojson.Safe.t -> 'a) -> 'a reader
+
+val write : ('a -> Yojson.Safe.t) -> 'a writer
+
+val read_json : Yojson.Safe.t reader
+
+val write_json : Yojson.Safe.t writer
+
 val sread : (string -> 'a) -> 'a reader
 val swrite : ('a -> string) -> 'a writer
 

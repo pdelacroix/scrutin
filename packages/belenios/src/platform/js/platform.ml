@@ -25,6 +25,16 @@ let belenios = Js.Unsafe.pure_js_expr "belenios"
 
 let debug x = Firebug.console##log (Js.string x)
 
+let read wrap state buf =
+  wrap (Yojson.Safe.read_json state buf)
+
+let write unwrap buf =
+  Yojson.Safe.write_json buf unwrap
+
+let read_json = Yojson.Safe.from_string
+
+let write_json = Yojson.Safe.write_json
+
 let sread of_string state buf =
   match Yojson.Safe.read_json state buf with
   | `String x -> of_string x
@@ -32,10 +42,6 @@ let sread of_string state buf =
 
 let swrite to_string buf x =
   Yojson.Safe.write_json buf (`String (to_string x))
-
-let rec write_shape write buf = function
-  | `Atomic x -> write buf x
-  | `Array xs -> Atdgen_runtime.Oj_run.write_array (write_shape write) buf xs
 
 let rec read_shape read state buf =
   Yojson.Safe.read_space state buf;
@@ -46,6 +52,10 @@ let rec read_shape read state buf =
     `Array (Yojson.Safe.read_array (read_shape read) state buf)
   else
     `Atomic (read state buf)
+
+let rec write_shape write buf = function
+  | `Atomic x -> write buf x
+  | `Array xs -> Atdgen_runtime.Oj_run.write_array (write_shape write) buf xs
 
 module Sjcl = struct
   open Js
