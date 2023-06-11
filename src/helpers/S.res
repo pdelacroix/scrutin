@@ -121,7 +121,7 @@ module SegmentedButtons = {
 
 module Button = {
   @react.component
-  let make = (~onPress, ~title, ~style=?, ~titleStyle=?) => {
+  let make = (~onPress, ~title, ~style=?, ~titleStyle=?, ~testID=?) => {
     let defaultStyle = viewStyle(
       ~alignSelf=#center,
       ~width=300.0->dp,
@@ -145,9 +145,9 @@ module Button = {
     | None => defaultTitleStyle
     }
 
-    <Button mode=#contained style onPress>
-      <Text style=titleStyle> {title->React.string} </Text>
-    </Button>
+    <Paper.Button mode=#contained style onPress>
+      <Text style=titleStyle ?testID> {title->React.string} </Text>
+    </Paper.Button>
   }
 }
 
@@ -163,7 +163,7 @@ module TextInput = {
       (),
     )
 
-    <TextInput style mode=#flat ?label ?testID ?placeholder
+    <Paper.TextInput style mode=#flat ?label ?testID ?placeholder
     value onChangeText />
   }
 }

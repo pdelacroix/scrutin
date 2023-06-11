@@ -2,6 +2,9 @@
   "name": "scrutin-app",
   "version": "0.0.3",
   "main": "node_modules/expo/AppEntry.js",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -17,7 +20,11 @@
     "eas-build-post-install": "rescript clean && rescript build -with-deps",
     "test": "cypress run",
     "test:gui": "cypress open",
-    "bbs": "cd bbs && npm start"
+    "bbs": "cd bbs && npm start",
+    "opam:init": "opam switch create . 4.14.1 -y --deps-only && opam update",
+    "opam:deps": "opam install -y . --deps-only && opam pin -y add scrutin.dev .",
+    "setup": "npm run opam:init && npm run opam:deps && npm install",
+    "build": "opam exec -- dune build @melange"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.2.3",
@@ -45,7 +52,7 @@
     "react-native-svg": "13.4.0",
     "react-native-vector-icons": "^9.2.0",
     "react-native-web": "~0.18.10",
-    "rescript-react-native": "^0.70.0",
+    "rescript-react-native": "file:packages/mel-react-native",
     "rescript-react-native-async-storage": "git+https://github.com/scrutin-app/rescript-react-native-async-storage",
     "rescript-webapi": "^0.7.0",
     "sjcl-with-all": "^1.0.8"

@@ -12,7 +12,7 @@ module Modal_Import = {
     <Portal>
       <Modal visible onDismiss={_ => setVisible(_ => false)}>
         <View style={S.flatten([S.modal, S.layout])} testID="choice-modal">
-          <TextInput
+          <Paper.TextInput
             mode=#flat
             label={t(. "identity.home.modal.privateKey")}
             testID="input-import-private-key"
@@ -21,9 +21,9 @@ module Modal_Import = {
             onChangeText={text => setImportedPrivateKey(_ => text)}
             onSubmitEditing={_ => onSubmit()}
           />
-          <Button mode=#contained onPress={_ => onSubmit()}>
+          <Paper.Button mode=#contained onPress={_ => onSubmit()}>
             {t(. "identity.home.modal.add")->React.string}
-          </Button>
+          </Paper.Button>
         </View>
       </Modal>
     </Portal>
@@ -38,41 +38,41 @@ let make = () => {
 
   <>
     <S.Title> {t(. "identity.home.title")->React.string} </S.Title>
-    <List.Section title="" style=S.marginX>
+    <Paper.List.Section title="" style=S.marginX>
       {Array.map(state.accounts, id => {
         <Card key=id.userId>
-          <List.Item
+          <Paper.List.Item
             title={"0x" ++ id.userId}
             onPress={_ => dispatch(Navigate(list{"identities", id.userId}))}
           />
         </Card>
       })->React.array}
-    </List.Section>
+    </Paper.List.Section>
     <S.Title> {"-"->React.string} </S.Title>
-    <Button
+    <Paper.Button
       mode=#contained
       onPress={_ => {
         dispatch(Account_Add(Account.make()))
       }}>
       {t(. "identity.home.generate")->React.string}
-    </Button>
+    </Paper.Button>
     <S.Title> {"-"->React.string} </S.Title>
-    <Button
+    <Paper.Button
       mode=#contained
       onPress={_ => {
         setVisibleImportModal(_ => true)
       }}>
       {t(. "identity.home.import")->React.string}
-    </Button>
+    </Paper.Button>
     <S.Title> {"-"->React.string} </S.Title>
-    <Button
+    <Paper.Button
       mode=#outlined
       onPress={_ => {
         Account.clear()
         dispatch(Reset)
       }}>
       {t(. "identity.home.clear")->React.string}
-    </Button>
+    </Paper.Button>
     <S.Title> {"-"->React.string} </S.Title>
     <Modal_Import
       visible=visibleImportModal

@@ -1,0 +1,8 @@
+@import "../../../ext/css/style.css";
+@import "../../../ext/css/superfish.css";
+@import "./common.css";
+
+#main {
+    border-radius: 0px 0px 0px 0px;
+    padding: 10px;
+}

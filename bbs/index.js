@@ -22,31 +22,16 @@ app.get('/events', async (req, res) => {
 })
 
 app.post('/events', cors(), asyncHandler(async (req, res) => {
-  const { type_, content, cid, publicKey, signature } = req.body
+  const { type_, content, cid, emitterId, signature } = req.body
   try {
     const event_ = await Event.create({
       type_,
       content,
       cid,
-      publicKey,
+      emitterId,
       signature
     })
     res.json(event_.toJSON())
-  } catch (e) {
-    console.error(e)
-    res.status(500).json({ message: "internal error" })
-  }
-}))
-
-// For testing (in production it's sent to the mailing server instead)
-const fs = require('fs').promises
-app.post('/proxy_email', cors(), asyncHandler(async (req, res) => {
-  try {
-    //if (!await fs.exists("emails")) {
-    //  await fs.mkdir("emails")
-    //}
-    await fs.mkdir("emails")
-    await fs.writeFile("emails/"+req.body.email, req.body.text)
   } catch (e) {
     console.error(e)
     res.status(500).json({ message: "internal error" })

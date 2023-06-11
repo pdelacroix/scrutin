@@ -1,0 +1,385 @@
+(**************************************************************************)
+(*                                BELENIOS                                *)
+(*                                                                        *)
+(*  Copyright © 2012-2023 Inria                                           *)
+(*                                                                        *)
+(*  This program is free software: you can redistribute it and/or modify  *)
+(*  it under the terms of the GNU Affero General Public License as        *)
+(*  published by the Free Software Foundation, either version 3 of the    *)
+(*  License, or (at your option) any later version, with the additional   *)
+(*  exemption that compiling, linking, and/or using OpenSSL is allowed.   *)
+(*                                                                        *)
+(*  This program is distributed in the hope that it will be useful, but   *)
+(*  WITHOUT ANY WARRANTY; without even the implied warranty of            *)
+(*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU     *)
+(*  Affero General Public License for more details.                       *)
+(*                                                                        *)
+(*  You should have received a copy of the GNU Affero General Public      *)
+(*  License along with this program.  If not, see                         *)
+(*  <http://www.gnu.org/licenses/>.                                       *)
+(**************************************************************************)
+
+<doc text="Serializable datatypes">
+
+(** {2 Predefined types} *)
+
+type number = string wrap <ocaml module="Common_types.Number">
+type weight = abstract wrap <ocaml module="Common_types.Weight">
+type uuid = string wrap <ocaml module="Common_types.Uuid">
+type hash = string wrap <ocaml module="Common_types.Hash">
+type 'a shape <ocaml predef from="Common_types.Atd_shape"> = abstract
+type 'a ciphertext <ocaml predef from="Serializable_core"> = abstract
+type proof <ocaml predef from="Serializable_core"> = abstract
+type question = abstract wrap <ocaml module="Question">
+
+(** {2 Trustees} *)
+
+type 'a trustee_public_key = {
+  pok : proof;
+  public_key : 'a;
+  ?name : string option;
+} <ocaml field_prefix="trustee_">
+
+(** {2 Finite fields} *)
+
+type ff_embedding = {
+  padding : int;
+  bits_per_int : int;
+}
+
+type ff_params = {
+  g : number;
+  p : number;
+  q : number;
+  ?embedding : ff_embedding option;
+}
+<doc text="Parameters for a multiplicative subgroup of a finite field.">
+
+(** {2 Elections} *)
+
+type params = {
+  version : int;
+  description : string;
+  name : string;
+  questions : question list <ocaml repr="array">;
+  uuid : uuid;
+  ?administrator : string option;
+  ?credential_authority : string option;
+} <ocaml field_prefix="e_">
+<doc text="Election parameters relevant for creating a ballot.">
+
+type voter = abstract wrap <ocaml module="Common.Voter">
+
+type voter_list = voter list
+
+type public_credentials = string list
+
+type private_credentials = (string * string) list <json repr="object">
+
+type template = {
+  description : string;
+  name : string;
+  questions : question list <ocaml repr="array">;
+  ?administrator : string option;
+  ?credential_authority : string option;
+} <ocaml field_prefix="t_">
+<doc text="Election template.">
+
+type 'a partial_decryption = {
+  decryption_factors : 'a shape;
+  decryption_proofs : proof shape;
+}
+
+type plaintext = int list <ocaml repr="array"> list <ocaml repr="array">
+
+type 'a encrypted_tally = 'a ciphertext shape
+
+type 'a sized_encrypted_tally = {
+  num_tallied : int;
+  total_weight : weight;
+  encrypted_tally : 'a;
+} <ocaml field_prefix="sized_">
+
+(** {2 Mixnets} *)
+
+type 'a nh_ciphertexts = 'a ciphertext list <ocaml repr="array"> list <ocaml repr="array">
+
+type 'a shuffle_proof =
+  (('a * 'a * 'a * ('a * 'a) * 'a list <ocaml repr="array">) *
+     (number * number * number * number *
+        number list <ocaml repr="array"> * number list <ocaml repr="array">) *
+       'a list <ocaml repr="array"> * 'a list <ocaml repr="array">)
+
+type 'a shuffle_proofs = 'a shuffle_proof list <ocaml repr="array">
+
+type 'a shuffle = {
+  ciphertexts : 'a nh_ciphertexts;
+  proofs : 'a shuffle_proofs;
+} <ocaml field_prefix="shuffle_">
+
+(** {2 Election result} *)
+
+type 'result election_result = {
+  result : 'result;
+}
+
+(** {2 Election report} *)
+
+type trustee_checksum = {
+  checksum : hash;
+  ?name : string option;
+} <ocaml field_prefix="tc_">
+
+type trustee_threshold_checksum = {
+  pki_key : hash;
+  verification_key : hash;
+  ?name : string option
+} <ocaml field_prefix="ttc_">
+
+type trustee_threshold_set = {
+  trustees : trustee_threshold_checksum list;
+  threshold : int;
+} <ocaml field_prefix="ts_">
+
+type weight_checksums = {
+  total : weight;
+  min : weight;
+  max : weight;
+} <ocaml field_prefix="w_">
+
+type election_checksums = {
+  election : hash;
+  trustees : trustee_checksum list;
+  trustees_threshold : trustee_threshold_set list;
+  num_voters : int;
+  ?weights : weight_checksums option;
+  public_credentials : hash;
+  ?shuffles : trustee_checksum list option;
+  ?encrypted_tally : hash option;
+} <ocaml field_prefix="ec_">
+
+type ballot_summary_item = {
+  hash : hash;
+  ?weight : weight option;
+} <ocaml field_prefix="bs_">
+
+type ballot_summary = ballot_summary_item list
+
+(** {2 PKI support} *)
+
+type signed_msg = {
+  message : string;
+  signature : proof;
+} <ocaml field_prefix="s_">
+
+type 'a channel_msg = {
+  recipient : 'a;
+  message : string;
+} <ocaml field_prefix="c_">
+
+type 'a encrypted_msg = {
+  alpha : 'a;
+  beta : 'a;
+  data : string;
+} <ocaml field_prefix="y_">
+
+(** {2 Threshold decryption support} *)
+
+type 'a cert_keys = {
+  verification : 'a;
+  encryption : 'a;
+} <ocaml field_prefix="cert_">
+
+type cert = signed_msg (* cert_keys *)
+
+type certs = {
+  certs : cert list <ocaml repr="array">;
+}
+
+type raw_polynomial = {
+  polynomial : number list <ocaml repr="array">
+}
+
+type 'a raw_coefexps = {
+  coefexps : 'a list <ocaml repr="array">
+}
+
+type coefexps = signed_msg (* raw_coefexps *)
+
+type secret = {
+  secret : number;
+}
+
+type polynomial = {
+  polynomial : string; (* sent raw_polynomial *)
+  secrets : string list <ocaml repr="array">; (* sent secrets *)
+  coefexps : coefexps;
+} <ocaml field_prefix="p_">
+
+type vinput = {
+  polynomial : string; (* sent raw_polynomial *)
+  secrets : string list <ocaml repr="array">; (* sent secrets *)
+  coefexps : coefexps list <ocaml repr="array">;
+} <ocaml field_prefix="vi_">
+
+type partial_decryption_key = {
+  decryption_key : number;
+} <ocaml field_prefix="pdk_">
+
+type 'a voutput = {
+  private_key : string; (* sent partial_decryption_key *)
+  public_key : 'a trustee_public_key;
+} <ocaml field_prefix="vo_">
+
+type 'a threshold_parameters = {
+  threshold : int;
+  certs : cert list <ocaml repr="array">;
+  coefexps : coefexps list <ocaml repr="array">;
+  verification_keys : 'a trustee_public_key list <ocaml repr="array">;
+} <ocaml field_prefix="t_">
+
+type 'a trustee_kind =
+  [ Single of 'a trustee_public_key
+  | Pedersen of 'a threshold_parameters
+  ]
+
+type 'a trustees = 'a trustee_kind list
+
+(** {2 Condorcet} *)
+
+type condorcet_ballots = int list <ocaml repr="array"> list <ocaml repr="array">
+type condorcet_matrix = int list <ocaml repr="array"> list <ocaml repr="array">
+type condorcet_beatpaths = (int * int) list <ocaml repr="array"> list <ocaml repr="array">
+
+type schulze_result = {
+  valid : int;
+  ?blank : int option;
+  raw : condorcet_matrix;
+  beatpaths : condorcet_beatpaths;
+  winners : int list list;
+} <ocaml field_prefix="schulze_">
+
+(** {2 Majority judgment} *)
+
+type mj_ballots = int list <ocaml repr="array"> list <ocaml repr="array">
+type mj_matrix = int list <ocaml repr="array"> list <ocaml repr="array">
+
+type mj_result = {
+  raw : mj_matrix;
+  valid : int;
+  ?blank : int option;
+  invalid : mj_ballots;
+  winners : int list list;
+} <ocaml field_prefix="mj_">
+
+(** {2 Single Transferable Vote} *)
+
+type stv_raw_ballots = int list <ocaml repr="array"> list <ocaml repr="array">
+type stv_processed_ballots = int list list
+
+type stv_event =
+  [ Win of int list
+  | Lose of int
+  | TieWin of int list
+  | TieLose of int list
+  ]
+type stv_events = stv_event list
+
+type stv_result = {
+  ballots : stv_processed_ballots;
+  invalid : stv_raw_ballots;
+  events : stv_events;
+  winners : int list;
+} <ocaml field_prefix="stv_">
+
+(** {2 Event-related types} *)
+
+type location = {
+  offset : int <ocaml repr="int64">;
+  length : int <ocaml repr="int64">;
+} <ocaml field_prefix="location_">
+
+type archive_header = {
+  version : int;
+  timestamp : int <ocaml repr="int64">;
+}
+
+type event_type =
+  [ Setup
+  | Ballot
+  | EndBallots
+  | EncryptedTally
+  | Shuffle
+  | EndShuffles
+  | PartialDecryption
+  | Result
+  ]
+
+type setup_data = {
+  election : hash;
+  trustees : hash;
+  credentials : hash;
+} <ocaml field_prefix="setup_">
+
+type event = {
+  ?parent : hash option;
+  height : int;
+  typ <json name="type"> : event_type;
+  ?payload : hash option;
+} <ocaml field_prefix="event_">
+
+type last_event = {
+  height : int;
+  hash : hash;
+  pos : int <ocaml repr="int64">;
+} <ocaml field_prefix="last_">
+
+type roots = {
+  ?setup_data : hash option;
+  ?last_ballot_event : hash option;
+  ?encrypted_tally : hash option;
+  ?last_shuffle_event : hash option;
+  ?last_pd_event : hash option;
+  ?result : hash option;
+} <ocaml field_prefix="roots_">
+
+type 'a owned = {
+  owner : int;
+  payload : 'a;
+} <ocaml field_prefix="owned_">
+
+(** {2 Sealing} *)
+
+type sealing_config = (string * string list) list <json repr="object">
+
+type file_kind =
+  [ REG
+  | DIR
+  | CHR
+  | BLK
+  | LNK
+  | FIFO
+  | SOCK
+  ]
+
+type 'a file_contents =
+  [ REG of hash
+  | DIR of (string * 'a) list <json repr="object">
+  | LNK of string
+  ]
+
+type stats = {
+  ?dev : int option;
+  ?ino : int option;
+  ?kind : file_kind option;
+  ?perm : int option;
+  ?nlink : int option;
+  ?uid : int option;
+  ?gid : int option;
+  ?rdev : int option;
+  ?size : int <ocaml repr="int64"> option;
+  ?atime : float option;
+  ?mtime : float option;
+  ?ctime : float option;
+  ?contents : stats file_contents option;
+} <ocaml field_prefix="st_">

@@ -15,9 +15,6 @@ let make = () => {
     }
   }
 
-  // Use latest version of objects
-  StateRedirectOriginal.use()
-
   <Layout state dispatch>
     {switch state.route {
     | list{"elections", "search"} => <ElectionSearch />
@@ -27,6 +24,12 @@ let make = () => {
       switch Map.String.get(state.elections, electionId) {
       | None => <NotFoundYet />
       | Some(election) => <ElectionShow election electionId />
+      }
+
+    | list{"elections", electionId, "challenge", userToken} =>
+      switch Map.String.get(state.elections, electionId) {
+      | None => <NotFoundYet />
+      | Some(election) => <ElectionChallenge election electionId userToken />
       }
 
     | list{"elections", electionId, "invite"} =>

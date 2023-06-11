@@ -1,0 +1,18 @@
+(include_subdirs unqualified)
+(melange.emit
+  (target output)
+  (libraries melange rescript_promise ReactNative reason_react rescript_webapi rescript_react_native_async_storage paper rescript_json_combinators rescript_use_tea rescript_react_native_svg belenios_lib belenios_core atdgen_codec_runtime)
+  (modules :standard)
+  (runtime_deps
+    (glob_files ./helpers/*.js)
+    (glob_files ./components/icons/*.js)
+    (glob_files ./components/utils/*.js)
+    (glob_files ./components/utils/*.svg)
+    (glob_files ./components/utils/*.png)
+    ../packages/belenios_platform_melange/BigIntCompat.js
+    ../packages/belenios_platform_melange/jsbn.js
+    ../packages/belenios_platform_melange/jsbn2.js)
+  (preprocess
+    (pps reactjs-jsx-ppx))
+  (compile_flags :standard -open Belt -open Paper -open ReactNative -w -9)
+  (module_systems es6))

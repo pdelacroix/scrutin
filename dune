@@ -1,0 +1,415 @@
+(subdir
+  packages
+  (data_only_dirs belenios seq atdgen-runtime atdgen-runtime.bak atdgen-codec-runtime bs-yojson atdgen-codec-runtime.bak bs-json))
+(subdir
+  packages/biniou
+  (include_subdirs unqualified)
+  (library
+    (name bs_biniou)
+    (wrapped false)
+    (modes melange)
+    (flags -w -9-27-32-20))
+  )
+(subdir
+  packages/bs-json/src
+  (include_subdirs unqualified)
+  (library
+    (name bs_json)
+    (wrapped false)
+    (modes melange)
+    (flags -w -9-27-32-20))
+  )
+; (subdir
+;   packages/bs-yojson
+;   (include_subdirs unqualified)
+;   (library
+;     (name bs_yojson)
+;     (libraries bs_biniou)
+;     (wrapped false)
+;     (modes melange)
+;     (flags -w -9-27-32-20))
+;   )
+; (subdir
+;   packages/atdgen-runtime
+;   (include_subdirs unqualified)
+;   (library
+;     (name atdgen_runtime)
+;     (libraries bs_yojson bs_biniou)
+;     (modes melange)
+;     (flags -w -9-27-32-20))
+;   )
+; (subdir
+;   packages/atdgen-runtime
+;   (include_subdirs unqualified)
+;   (library
+;     (name atdgen_runtime_wrapper)
+;     (libraries bs_json)
+;     (wrapped false)
+;     (modes melange)
+;     (flags -w -9-27-32-20))
+;   )
+; (subdir
+;   packages/atdgen-codec-runtime
+;   (include_subdirs unqualified)
+;   (library
+;     (name atdgen_codec_runtime)
+;     ; (libraries bs_yojson bs_biniou)
+;     (modes melange)
+;     (flags -w -9-27-32-20))
+;   )
+(subdir
+  packages/bs-atdgen-codec-runtime/src
+  (include_subdirs unqualified)
+  (library
+    (name atdgen_codec_runtime)
+    (wrapped false)
+    (libraries bs_json)
+    (modes melange)
+    (flags -w -9-27-32-20))
+  )
+(subdir
+  packages/re
+  (include_subdirs unqualified)
+  (library
+    (name bs_re)
+    (wrapped false)
+    (modes melange)
+    (flags -w -9-27-32-20))
+  )
+(subdir
+  packages/base64
+  (include_subdirs unqualified)
+  (library
+    (name base64)
+    (modes melange)
+    (flags -w -9-27-32-20))
+  )
+(subdir
+  packages/hex
+  (include_subdirs unqualified)
+  (library
+    (name hex)
+    (modes melange)
+    (flags -w -9-27-32-20))
+  )
+(subdir
+  packages/belenios_platform_melange
+  (include_subdirs unqualified)
+  (library
+    (name belenios_platform_melange)
+    (libraries atdgen_codec_runtime belenios_compat_melange)
+    (implements belenios_platform)
+    (modes melange)
+    (flags -w -9-27-32-20))
+  )
+(subdir
+  packages/belenios_compat_melange
+  (include_subdirs unqualified)
+  (library
+    (name belenios_compat_melange)
+    (libraries atdgen_codec_runtime)
+    (wrapped false)
+    (modes melange)
+    (flags -w -9-27-32-20))
+  )
+(subdir
+  packages/belenios/src/lib/core
+  (include_subdirs unqualified)
+  (library
+    (name belenios_core)
+    (libraries base64 hex bs_biniou belenios_platform_melange atdgen_codec_runtime bs_re belenios_compat_melange)
+    (modules_without_implementation question_sigs signatures signatures_core trustees_sig versioned_sig)
+    (wrapped true)
+    (modes melange)
+    (flags -w -9-27-32-20))
+  (rule
+    (targets serializable_core_t.ml serializable_core_t.mli)
+    (deps serializable_core.atd)
+    (action (run atdgen -t %{deps})))
+  (rule
+    (targets question_h_t.ml question_h_t.mli)
+    (deps question_h.atd)
+    (action (run atdgen -t %{deps})))
+  (rule
+    (targets question_nh_t.ml question_nh_t.mli)
+    (deps question_nh.atd)
+    (action (run atdgen -t %{deps})))
+  (rule
+    (targets serializable_t.ml serializable_t.mli)
+    (deps serializable.atd)
+    (action (run atdgen -t %{deps})))
+  (rule
+    (targets serializable_core_bs.ml serializable_core_bs.mli)
+    (deps serializable_core.atd)
+    (action (run atdgen -bs %{deps})))
+  (rule
+    (targets question_h_bs.ml question_h_bs.mli)
+    (deps question_h.atd)
+    (action (run atdgen -bs %{deps})))
+  (rule
+    (targets question_nh_bs.ml question_nh_bs.mli)
+    (deps question_nh.atd)
+    (action (run atdgen -bs %{deps})))
+  (rule
+    (targets serializable_bs.ml serializable_bs.mli)
+    (deps serializable.atd)
+    (action (run atdgen -bs %{deps})))
+  (rule
+    (targets serializable_core_j.ml)
+    (deps serializable_core_bs.ml)
+    (action (run cp %{deps} %{targets})))
+  (rule
+    (targets question_h_j.ml)
+    (deps question_h_bs.ml)
+    (action (run cp %{deps} %{targets})))
+  (rule
+    (targets question_nh_j.ml)
+    (deps question_nh_bs.ml)
+    (action (run cp %{deps} %{targets})))
+  (rule
+    (targets serializable_j.ml)
+    (deps serializable_bs.ml)
+    (action (run cp %{deps} %{targets})))
+  (rule
+    (targets serializable_core_j.mli)
+    (deps serializable_core_bs.mli)
+    (action (run cp %{deps} %{targets})))
+  (rule
+    (targets question_h_j.mli)
+    (deps question_h_bs.mli)
+    (action (run cp %{deps} %{targets})))
+  (rule
+    (targets question_nh_j.mli)
+    (deps question_nh_bs.mli)
+    (action (run cp %{deps} %{targets})))
+  (rule
+    (targets serializable_j.mli)
+    (deps serializable_bs.mli)
+    (action (run cp %{deps} %{targets})))
+; (rule
+;  (targets serializable_core_j.ml serializable_core_j.mli)
+;  (deps serializable_core.atd)
+;  (action (run atdgen -j -j-std %{deps})))
+; (rule
+;  (targets question_h_j.ml question_h_j.mli)
+;  (deps question_h.atd)
+;  (action (run atdgen -j -j-std %{deps})))
+; (rule
+;  (targets question_nh_j.ml question_nh_j.mli)
+;  (deps question_nh.atd)
+;  (action (run atdgen -j -j-std %{deps})))
+; (rule
+;  (targets serializable_j.ml serializable_j.mli)
+;  (deps serializable.atd)
+;  (action (run atdgen -j -j-std %{deps})))
+  )
+(subdir
+  packages/belenios/src/lib/v1
+  (include_subdirs unqualified)
+  (library
+    (name belenios_v1)
+    (libraries belenios_core belenios_platform_melange atdgen_codec_runtime belenios_compat_melange)
+    (wrapped true)
+    (modes melange)
+    (flags -w -9-27-32-20))
+  (rule
+    (targets serializable_t.ml serializable_t.mli)
+    (deps serializable.atd)
+    (action (run atdgen -t %{deps})))
+  (rule
+    (targets serializable_bs.ml serializable_bs.mli)
+    (deps serializable.atd)
+    (action (run atdgen -bs %{deps})))
+  (rule
+    (targets serializable_j.ml)
+    (deps serializable_bs.ml)
+    (action (run cp %{deps} %{targets})))
+  (rule
+    (targets serializable_j.mli)
+    (deps serializable_bs.mli)
+    (action (run cp %{deps} %{targets})))
+  )
+(subdir
+  packages/belenios/src/lib/shell
+  (include_subdirs unqualified)
+  (library
+    (name belenios_lib)
+    (libraries bs_json belenios_platform belenios_platform_melange belenios_core belenios_v1 atdgen_codec_runtime belenios_compat_melange)
+    (wrapped true)
+    (modes melange)
+    (flags -w -9-27-32-20))
+  )
+
+(subdir
+  packages/belenios/src/platform
+  (copy_files version/version.ml)
+  (library
+    (name belenios_platform)
+    (libraries base64 hex atdgen_codec_runtime belenios_compat_melange)
+    (wrapped true)
+    (modes melange)
+    (flags -w -9-27-32-20)
+    (modules_without_implementation signatures)
+    (virtual_modules platform))
+  (subdir
+    version
+    (rule
+      (target version.ml)
+      (deps
+        get_build.sh
+        gen.sh
+        (:version ../../../VERSION)
+        (:spec_version ../../../doc/spec_version.tex)
+        (env_var BELENIOS_DEBUG)
+        (env_var BELENIOS_BUILD))
+      (action (with-stdout-to %{target} (run ./gen.sh %{version} %{spec_version}))))
+    )
+  )
+
+(subdir
+  packages/mel-react-native/src
+  (include_subdirs unqualified)
+  (library
+    (name ReactNative)
+    (libraries (re_export reason_react))
+    (preprocess
+      (pps reactjs-jsx-ppx))
+    (wrapped true)
+    (modes melange)
+    (flags -w -9-27-32-20))
+  )
+(subdir
+  node_modules
+  (data_only_dirs reason-react @roddynpm))
+; (subdir
+;   packages/bs-yojson/lib
+;   (library
+;     (name bs_yojson)
+;     (libraries bs_biniou bs_easy_format)
+;     (modules yojson)
+;     (wrapped false)
+;     (modes melange)
+;     (flags -w -9-27-32-20))
+;   )
+; (subdir
+;   node_modules/@roddynpm/bs-biniou/src
+;   (include_subdirs unqualified)
+;   (library
+;     (name bs_biniou)
+;     (libraries bs_easy_format)
+;     (modules bi_outbuf bi_inbuf bi_share bi_util)
+;     (wrapped false)
+;     (modes melange)
+;     (flags -w -9-27-32-20))
+;   )
+(subdir
+  node_modules/@roddynpm/bs-easy-format/src
+  (include_subdirs unqualified)
+  (library
+    (name bs_easy_format)
+    (wrapped false)
+    (modes melange)
+    (flags -w -9-27-32-20))
+  )
+; (subdir
+;   node_modules/@ahrefs/bs-atdgen-codec-runtime/src
+;   (include_subdirs unqualified)
+;   (library
+;     (name atdgen_codec_runtime)
+;     (libraries bs_json)
+;     (wrapped false)
+;     (modes melange)
+;     (flags -w -9-27-32-20))
+;   )
+; (subdir
+;   node_modules/@glennsl/bs-json
+;   (include_subdirs unqualified)
+;   (library
+;     (name bs_json)
+;     (wrapped false)
+;     (modes melange)
+;     (flags -w -9-27-32-20))
+;   )
+(subdir
+  node_modules/@rescript/react/src
+  (include_subdirs unqualified)
+  (library
+    (name reason_react)
+    (wrapped false)
+    (modes melange)
+    (flags -w -9-27-32-20)))
+(subdir
+  node_modules/@rescript-react-native/paper/src
+  (include_subdirs unqualified)
+  (library
+    (name paper)
+    (libraries ReactNative)
+    (preprocess
+      (pps reactjs-jsx-ppx))
+    (wrapped false)
+    (modes melange)
+    (flags -w -9-27-32-20)))
+(subdir
+  node_modules/@rescript-react-native/svg
+  (include_subdirs unqualified)
+  (library
+    (name rescript_react_native_svg)
+    (libraries ReactNative)
+    (preprocess
+      (pps reactjs-jsx-ppx))
+    (wrapped false)
+    (modes melange)
+    (flags -w -9-27-32-20)))
+(subdir
+  node_modules/@ryyppy/rescript-promise/src
+  (include_subdirs unqualified)
+  (library
+    (name rescript_promise)
+    (wrapped false)
+    (modes melange)
+    (flags -w -9-27-32-20)))
+(subdir
+  node_modules/@glennsl/rescript-json-combinators
+  (include_subdirs unqualified)
+  (library
+    (name rescript_json_combinators)
+    (wrapped false)
+    (modes melange)
+    (flags -w -9-27-32-20)))
+(subdir
+  node_modules/rescript-use-tea
+  (include_subdirs unqualified)
+  (library
+    (name rescript_use_tea)
+    (libraries reason_react)
+    (wrapped false)
+    (modes melange)
+    (flags -w -9-27-32-20)))
+(subdir
+  node_modules/rescript-webapi
+  (include_subdirs unqualified)
+  (library
+    (name rescript_webapi)
+    (wrapped false)
+    (modes melange)
+    (flags -w -9-27-32-20)))
+(subdir
+  node_modules/rescript-react-native-async-storage
+  (include_subdirs unqualified)
+  (library
+    (name rescript_react_native_async_storage)
+    (wrapped false)
+    (modes melange)
+    (flags -w -9-27-32-20)))
+
+(subdir
+  _opam/lib
+  (data_only_dirs cstruct))
+(subdir
+  _opam/lib/cstruct
+  (include_subdirs unqualified)
+  (library
+    (name cstruct)
+    (wrapped true)
+    (modes melange)
+    (flags -w -9-27-32-20)))

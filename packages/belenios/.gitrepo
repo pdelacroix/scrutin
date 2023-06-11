@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = git@gitlab.com:imago-project/belenios.git
+	branch = master
+	commit = c6b38f04775c45de0b8dd4794850639ac0f2e0fb
+	parent = c41baa8184f206ff60c83e6704992425f1fadf86
+	method = merge
+	cmdver = 0.4.5

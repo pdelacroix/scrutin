@@ -18,11 +18,11 @@ let make = (~election: Election.t) => {
     //      <ElectionShowAddByEmailButton electionId />
     //      <ElectionInviteButton electionId />
 
-    //      <Button mode=#outlined onPress={_ =>
+    //      <Paper.Button mode=#outlined onPress={_ =>
     //        Core.Election.tally(~electionId)(state, dispatch)
     //      }>
     //        { t(."election.show.closeAndTally") -> React.string }
-    //      </Button>
+    //      </Paper.Button>
     //    </>
     //    } else {
     //      <S.Title>

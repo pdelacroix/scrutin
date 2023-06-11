@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:pdelacroix/mel-react-native.git
+	branch = main
+	commit = 72e9d091b3aa6f910382e669d3c6670b8ed12667
+	parent = f43f1f09179167010d3f660253d27c6ea2ba70ab
+	method = merge
+	cmdver = 0.4.5

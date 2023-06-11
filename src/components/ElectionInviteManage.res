@@ -6,7 +6,7 @@ module Item = {
     let invitation = state->State.getInvitationExn(userId)
     let email = Option.getWithDefault(invitation.email, "No email")
 
-    <List.Item title=userId description=email />
+    <Paper.List.Item title=userId description=email />
   }
 }
 

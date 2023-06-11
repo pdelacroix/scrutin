@@ -3,30 +3,54 @@ let make = (~election: Election.t, ~electionId) => {
   //let { t } = ReactI18next.useTranslation()
   let (state, dispatch) = StateContext.use()
   let (emails, setEmails) = React.useState(_ => ["", ""])
-  let admin = state->State.getElectionAdmin(election)
+  let admin = state->State.getElectionAdminExn(election)
   let (sendInvite, setSendInvite) = React.useState(_ => true)
 
   let onSubmit = _ => {
     emails
     ->Array.keep(email => email != "")
     ->Array.forEach(email => {
-      let voter = Account.make()
-      let invitation: Invitation.t = { userId: voter.userId, email }
-      dispatch(Invitation_Add(invitation))
 
-      let election = {...election,
-        voterIds: Array.concat(election.voterIds, [voter.userId])
+      let data = {
+        let dict = Js.Dict.empty()
+        Js.Dict.set(dict, "email", Js.Json.string(email))
+        Js.Dict.set(dict, "electionId", Js.Json.string(electionId))
+        Js.Dict.set(dict, "sendInvite", Js.Json.boolean(sendInvite))
+        Js.Json.object_(dict)
       }
-      let ev = Event_.SignedElection.update(election, admin)
-      dispatch(Event_Add_With_Broadcast(ev))
 
-      switch sendInvite {
-      | true => Mailer.send(ev.cid, admin, voter, email)
-      | false => ()
-      }
+      X.post(`${URL.server_auth_email}/users`, data)
+      ->Promise.then(Webapi.Fetch.Response.json)
+      ->Promise.then(json => {
+        switch Js.Json.classify(json) {
+        | Js.Json.JSONObject(value) =>
+          let optionalManagerId = value
+          ->Js.Dict.get("managerId")
+          ->Option.flatMap(Js.Json.decodeString)
+          Promise.resolve(optionalManagerId)
+        | _ => failwith("Expected an object")
+        }
+      })
+      ->Promise.thenResolve((optionalManagerId) => {
+        switch (optionalManagerId) {
+        | Some(managerId) =>
+          let invitation: Invitation.t = {
+            userId: managerId,
+            email: Some(email),
+            phoneNumber: None
+          }
+          dispatch(Invitation_Add(invitation))
+          let ev = Event_.ElectionVoter.create({
+            electionId,
+            voterId: managerId,
+          }, admin)
+          dispatch(Event_Add_With_Broadcast(ev))
+          dispatch(Navigate(list{"elections", electionId}))
+        | None => Js.log("No managerId found...")
+        }
+      })->ignore
     })
 
-    dispatch(Navigate(list{"elections", electionId}))
   }
 
   let onRemove = i => {
@@ -57,7 +81,7 @@ let make = (~election: Election.t, ~electionId) => {
       title="+"
       onPress={_ => setEmails(emails => Array.concat(emails, [""]))}
     />
-    <List.Item
+    <Paper.List.Item
       title="Envoyer une invitation"
       description="Tous les participants recevront un email"
       onPress={_ => setSendInvite(b => !b)}

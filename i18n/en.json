@@ -2,17 +2,17 @@
     "translation": {
         "app.title": "Scrutin: Secure, verifiable elections",
         "home": {
-          "create": "Create an election",
-          "search": "Search an election..."
+            "create": "Create an election",
+            "search": "Search an election..."
         },
         "search": {
-          "header.title": "Search an election"
+            "header.title": "Search an election"
         },
         "ballot.show": {
             "title": "Ballot",
             "election": "Election",
             "eventHash": "Event Hash",
-            "previousId": "Previous Id",
+            "previousId": "Previous ID",
             "voter": "Voter",
             "ciphertext": "Ciphertext"
         },

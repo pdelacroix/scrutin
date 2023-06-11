@@ -4,28 +4,27 @@ let make = (~election: Election.t, ~electionId) => {
   let (state, dispatch) = StateContext.use()
   let {t} = ReactI18next.useTranslation()
   let (inviteUrl, setInviteUrl) = React.useState(_ => "")
-  let admin = state->State.getElectionAdmin(election)
+  let admin = state->State.getElectionAdminExn(election)
 
   React.useEffect0(() => {
-    let voterAccount = Account.make()
-    let invitation: Invitation.t = { userId: voterAccount.userId }
+    let voter = Account.make()
+    let invitation: Invitation.t = { userId: voter.userId, email: None, phoneNumber: None }
     dispatch(Invitation_Add(invitation))
 
-    let election = {...election,
-      voterIds: Array.concat(election.voterIds, [voterAccount.userId])
-    }
-    let ev = Event_.SignedElection.update(election, admin)
+    let ev = Event_.ElectionVoter.create({
+      electionId,
+      voterId: voter.userId
+    }, admin)
     dispatch(Event_Add_With_Broadcast(ev))
 
-    let secretKey = voterAccount.secret
-    setInviteUrl(_ => `${URL.base_url}/elections/${ev.cid}/booth#${secretKey}`)
+    setInviteUrl(_ => `${URL.base_url}/elections/${electionId}/booth#${voter.secret}`)
     None
   })
 
   <>
     <ElectionHeader election section=#inviteLink />
     <View style={Style.viewStyle(~margin=30.0->Style.dp, ())}>
-      <S.TextInput onChangeText={_ => ()} value=inviteUrl />
+      <S.TextInput onChangeText={_ => ()} value=inviteUrl testID="input-invite-link" />
     </View>
     <CopyButton text=inviteUrl />
     <S.Button
